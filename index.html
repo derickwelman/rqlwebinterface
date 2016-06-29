@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RQL 2 SQL</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap/css/bootstrap.min.css">
+		<script src="sources/jquery-1.12.1.min.js"></script>
+		<script>
+			function addSymbol(symbol, modifier){
+				var source = $('#source');
+				var pos = source.getCursorPosition();
+				var content = source.val();
+				source.val(content.substring(0, pos) + symbol + content.substring(pos, content.length));
+				source.focus();
+				source[0].setSelectionRange(pos + modifier, pos + modifier);
+			}
+
+			$.fn.extend({
+				getCursorPosition: function() {
+					var el = $(this).get(0);
+					var pos = 0;
+					if('selectionStart' in el){
+						pos = el.selectionStart;
+					}else if('selection' in document){
+						el.focus();
+						var Sel = document.selection.createRange();
+						var SelLength = document.selection.createRange().text.length;
+						Sel.moveStart('character', -el.value.length);
+						pos = Sel.text.length - SelLength
+					}
+					return pos;
+				}
+			});
+		</script>
+
+	</head>
+	<body>
+		
+		<div class="header">
+			<h1>RQL To SQL Translator</h1>
+		</div>
+		<form class="form" onSubmit="return false;">
+			
+			<div class="symbol-menu col-md-12" id="button-menu">
+				<button class="col-md-1 btn" onClick="addSymbol('£', 1)"><span info="Selection" symbol="£">£</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('¢', 1)"><span  info="Projection" symbol="¢">¢</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('§', 1)"><span  info="Rename" symbol="§">§</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('^', 1)"><span  info="Union" symbol="v">v</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('v', 2)"><span  info="Intersection" symbol="^">^</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('-', 1)"><span  info="Difference" symbol="-">-</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('[]', 1)"><span  info="Join" symbol="[]">[]</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('<<>>', 2)"><span  info="Transitive Closure" symbol="<<>>"><<>></span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('/', 1)"><span  info="Division" symbol="/">/</span></button>
+				<button class="col-md-1 btn" onClick="addSymbol('x', 1)"><span  info="Cross Join" symbol="x">x</span></button>
+				<span class="col-md-2 symbol-item" id="menu-label"> RQLs</span>
+			</div>
+
+			<textarea id="source" class="col-md-6" placeholder="Your Relational Query Language Here"></textarea>
+			<div id="translation" class="col-md-6" ><span class="placeholder">Generated Structured Query Language</span></div>
+			<button id="translate" class="btn btn-success btn-block btn-lg">TRANSLATE!</button>
+
+			<div id="result" class="col-md-12">
+				<span class="placeholder">Here are the query results</span>
+			</div>
+		</form>
+		<footer>
+			Relational Query Language Translator - 2016<br> Developed by Dérick Welman and Lucas Venezian
+		</footer>
+	</body>
+</html>
+
+<script>
+	$('#translate').click(function(){
+		$.post(
+			"request_translate.php",
+			{source : $('#source').val()},
+			function(data){
+				$('#translation').html(data);
+			}
+		);
+	});
+
+	function query(query){
+		$.post(
+			"connect.php",
+			{source : query.innerHTML},
+			function(data){
+				$('#result').html(data);
+			}
+		);
+	}
+
+	var buttons = $('#button-menu button');
+	var rqlLabel = $('#menu-label');
+	buttons.hover(
+		function($this){
+			rqlLabel.hide();
+			$(this).removeClass('col-md-1');
+			$(this).addClass('col-md-3');
+			var content = $(this).children();
+			content.html("<span style=\"color:#7b0000\">" + content.html() + "</span> " + content.attr('info'));
+		}, 
+		function($this){
+			rqlLabel.show();
+			$(this).addClass('col-md-1');
+			$(this).removeClass('col-md-3');
+			var content = $(this).children();
+			content.html(content.attr('symbol'));
+		});
+</script>
