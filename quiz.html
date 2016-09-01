@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RQL 2 SQL</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="sources/bootstrap/css/bootstrap.min.css">
+		<script type="text/javascript" src="sources/jquery-1.12.1.min.js"></script>
+		<script type="text/javascript" src="sources/bootstrap/js/bootstrap.min.js"></script>
+		<script>
+			function addSymbol(symbol, modifier){
+				var source = $('#source');
+				var pos = source.getCursorPosition();
+				var content = source.val();
+				source.val(content.substring(0, pos) + symbol + content.substring(pos, content.length));
+				source.focus();
+				source[0].setSelectionRange(pos + modifier, pos + modifier);
+			} 
+
+			$.fn.extend({
+				getCursorPosition: function() {
+					var el = $(this).get(0);
+					var pos = 0;
+					if('selectionStart' in el){
+						pos = el.selectionStart;
+					}else if('selection' in document){
+						el.focus();
+						var Sel = document.selection.createRange();
+						var SelLength = document.selection.createRange().text.length;
+						Sel.moveStart('character', -el.value.length);
+						pos = Sel.text.length - SelLength
+					}
+					return pos;
+				}
+			});
+		</script>
+
+	</head>
+	<body>
+		<div id="page">
+		<div class="header">
+			<center>
+				<img id="logo" src="logo.svg" alt="RQL">
+				<h1> To SQL Translator</h1>
+			</center>
+		</div>
+		<form class="form" onSubmit="return false;">
+			
+			<div id="question" class="col-md-12 col-sm-12 col-xm-12" page="1"></div>
+			<div class="symbol-menu col-md-12" id="button-menu">
+				<button class="col-1 btn" data-toggle="tooltip" data-placement="top" title="Selection:<br>£ idRelation = 1 (Relation);" onClick="addSymbol('£', 1)"><span symbol="£">£</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Projection:<br>¢ idRelation (Relation);" onClick="addSymbol('¢', 1)"><span symbol="¢">¢</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Rename:<br>§ oldName newName (Relation);" onClick="addSymbol('§', 1)"><span symbol="§">§</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Union:<br>Relation v Relation;" onClick="addSymbol('v', 1)"><span symbol="v">v</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Intersection:<br>Relation ^ Relation;" onClick="addSymbol('^', 2)"><span symbol="^">^</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Difference:<br>Relation - Relation;" onClick="addSymbol('-', 1)"><span symbol="-">-</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Join:<br>Relation [] Relation<br>Relation [idL = idR] Relation;" onClick="addSymbol('[]', 1)">	<span symbol="[]">[]</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Transitive Closure:<br>&lt;&lt; Relation &gt;&gt;;" onClick="addSymbol('<<>>', 2)"><span symbol="<<>>"><<>></span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Division:<br>Relation / Relation;" onClick="addSymbol('/', 1)"><span symbol="/">/</span></button>
+				<button class="col-1 btn" html="true" data-toggle="tooltip" data-placement="top" title="Cross Join:<br>Relation x Relation;" onClick="addSymbol('x', 1)"><span symbol="x">x</span></button>
+				<button id="rql-label" class="col-2 disabled" html="true" data-toggle="tooltip" data-placement="top" title="Relational Query Language" style="cursor:default">RQL</button>
+			</div>
+
+			<textarea id="source" class="col-md-12 col-sm-12 col-xm-12" placeholder="Your Relational Query Language Here"></textarea>
+			<button id="prev" class="btn btn-success btn-lg col-md-4 col-sm-4 col-xs-4 middle-button">Previous question</button>
+			<button id="submit" class="btn btn-success btn-lg col-md-4 col-sm-4 col-xs-4 middle-button">Submit</button>
+			<button id="next" class="middle-button btn btn-success btn-lg col-md-4 col-sm-4 col-xs-4">Next question</button>
+
+			<span class="clear"></span>
+			<div id="result" class="col-md-12">
+				<span class="placeholder">Here are the query results</span>
+			</div>
+			<span class="clear"></span>
+		</form>
+		<span class="clear" style="height:100px"></span>
+		<footer>
+			Relational Query Language Translator - 2016<br> Developed by Dérick Welman and Lucas Venezian
+		</footer>
+		</div>
+	</body>
+</html>
+
+<script>
+	var minPage = 0;
+	var maxPage = 11;
+	function query(query){
+		$.post(
+			"connect.php",
+			{source : query.innerHTML},
+			function(data){
+				$('#result').html(data);
+			}
+		);
+	}
+
+	var buttons = $('#button-menu button');
+	var rqlLabel = $('#menu-label');
+
+
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip({html: true});
+	    load(1);
+	});
+
+	$('#prev').click(function(){
+		var page = $('#question').attr('page');
+		if(parseInt(page) <= minPage) return;
+		$('#question').attr('page', parseInt(page)-1);
+		load(parseInt(page)-1);
+	});
+
+	$('#next').click(function(){
+		var page = $('#question').attr('page');
+		if(parseInt(page) >= maxPage) return;
+		$('#question').attr('page', parseInt(page)+1);
+		load(parseInt(page)+1);
+	});
+
+	function load(page){
+		$.post(
+			'questions/page' + page + '.html',
+			{source : ""},
+			function(data){
+				$('#question').html(data);
+			}
+		);
+	}
+</script>

@@ -6,7 +6,7 @@
 <body>
 	<?php
 	$source = $_POST['source'];
-	$con = new PDO("mysql:host=localhost;dbname=rql", "root", ""); 
+	$con = new PDO("mysql:host=localhost:8080;dbname=rql", "root", "usbw"); 
 	$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$con->exec("SET CHARACTER SET utf8");
 
