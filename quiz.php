@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="sources/bootstrap/css/bootstrap.min.css">
 	<script type="text/javascript" src="sources/jquery-1.12.1.min.js"></script>
 	<script type="text/javascript" src="sources/jquery.tabletojson.min.js"></script>
+	<script type="text/javascript" src="sources/deep-json-compare.js"></script>
 	<script type="text/javascript" src="sources/bootstrap/js/bootstrap.min.js"></script>
 	<script>
 		function addSymbol(symbol, modifier){
@@ -115,6 +116,7 @@
 			{source : query},
 			function(data){
 				$('#result').html(data);
+				compareResults();
 			}
 			);
 	}
@@ -292,4 +294,27 @@
 	$('#show-db').click(function(){
 		$('#db-modal').fadeIn(500);
 	});
+
+	//DISPLAY THE RESULT JSON
+	function getJsonFromTable(){
+		return $('table').tableToJSON();
+	}
+
+	function printJsonFromTable(){
+		console.log(JSON.stringify(getJsonFromTable()));
+	}
+
+	function compareResults(){
+		if (typeof expected != 'undefined') {
+			if(JSON.stringify(getJsonFromTable()) == JSON.stringify(expected)){
+				$('table').css('background', 'rgb(100, 255, 100)');
+				return true;
+			}else{
+				$('table').css('background', 'rgb(255, 100, 100)');
+				return false;
+			}
+		}
+		return JSON.stringify(getJsonFromTable()) == JSON.stringify(expected);
+		//return deepCompare(getJsonFromTable(), expected);
+	}
 </script>
