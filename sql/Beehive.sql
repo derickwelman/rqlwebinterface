@@ -259,3 +259,36 @@ INSERT INTO Hierarchy (idInferior, idSuperior) VALUES
 	(6, 7),
 	(7, 2),
 	(8, 6);
+
+
+------------ RQL DATABASE DEFINITION ------------
+Hive.idHive:INTEGER;
+Hive.positionX:INTEGER;
+Hive.positionY:INTEGER;
+Hive.honey:DOUBLE;
+
+Comb.idComb:INTEGER;
+Comb.idHive:INTEGER;
+
+Job.idJob:INTEGER;
+Job.description:VARCHAR;
+Job.salary:DOUBLE;
+
+Bee.idBee:INTEGER;
+Bee.name:VARCHAR;
+Bee.age:INTEGER;
+Bee.honey:DOUBLE;
+Bee.idJob:INTEGER;
+Bee.idComb:INTEGER;
+
+Hierarchy.idInferior:INTEGER;
+Hierarchy.idSuperior:INTEGER;
+
+Flower.idFlower:INTEGER;
+Flower.positionX:INTEGER;
+Flower.positionY:INTEGER;
+
+Pollen.idFlower:INTEGER;
+Pollen.idBee:INTEGER;
+
+Hive.idHive:INTEGER;Hive.positionX:INTEGER;Hive.positionY:INTEGER;Hive.honey:DOUBLE;Comb.idComb:INTEGER;Comb.idHive:INTEGER;Job.idJob:INTEGER;Job.description:VARCHAR;Job.salary:DOUBLE;Bee.idBee:INTEGER;Bee.name:VARCHAR;Bee.age:INTEGER;Bee.honey:DOUBLE;Bee.idJob:INTEGER;Bee.idCom:INTEGER;Hierarchy.idInferior:INTEGER;Hierarchy.idSuperior:INTEGER;Flower.idFlower:INTEGER;Flower.positionX:INTEGER;Flower.positionY:INTEGER;Pollen.idFlower:INTEGER;Pollen.idBee:INTEGER;

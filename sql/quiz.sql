@@ -2,20 +2,21 @@ DROP DATABASE Questionnaire;
 CREATE DATABASE Questionnaire;
 USE Questionnaire;
 
-CREATE TABLE User(
-	idUser 		INT 		NOT NULL 	PRIMARY KEY AUTO_INCREMENT,
-	name 		VARCHAR 	NOT NULL,
-	institution VARCHAR 	NOT NULL,
-	user 		VARCHAR 	NOT NULL,
-	pass 		VARCHAR 	NOT NULL,
-	country 	VARCHAR 	NOT NULL,
-	experience 	INT 		NOT NULL
+CREATE TABLE Login(
+	idLogin		INT 			NOT NULL 	PRIMARY KEY AUTO_INCREMENT,
+	name 		VARCHAR(50) 	NOT NULL,
+	institution VARCHAR(100) 	NOT NULL,
+	login 		VARCHAR(50) 	NOT NULL,
+	pass 		VARCHAR(50) 	NOT NULL,
+	country 	VARCHAR(50) 	NOT NULL,
+	experience 	INT 			NOT NULL
 );
  
 CREATE TABLE Answer(
-	idQuestion 	INT 		NOT NULL,
-	idUser 		INT 		NOT NULL,
-	answer 		VARCHAR		NOT NULL,
-	CONSTRAINT pk_answer PRIMARY KEY (idQuestion, idUser),
-	CONSTRAINT fk_answer_user FOREIGN KEY (idUser) REFERENCES User (idUser)		
+	idQuestion 	INT 				NOT NULL,
+	idLogin		INT 				NOT NULL,
+	rqlAnswer 		VARCHAR(1000)	NULL,
+	sqlAnswer 		VARCHAR(1000)	NULL,
+	CONSTRAINT pk_answer PRIMARY KEY (idQuestion, idLogin),
+	CONSTRAINT fk_answer_user FOREIGN KEY (idLogin) REFERENCES Login (idLogin)		
 );
