@@ -5,10 +5,18 @@
 </head>
 <body>
 	<?php
+	$host = "localhost";
+	$db = "Bees";
+	$user = "postgres";
+	$pass = "postgres";
+	$port = 5432;
+
+	$con = new PDO("pgsql: host=$host; port=$port; dbname=$db; user=$user; password=$pass;");
 	$source = $_POST['source'];
-	$con = new PDO("mysql:host=localhost;dbname=bees", "root", ""); 
+	$source = str_replace('"', "'", $source);
+	/*$con = new PDO("mysql:host=localhost;dbname=bees", "root", "");*/ 
 	$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-	$con->exec("SET CHARACTER SET utf8");
+	//$con->exec("SET CHARACTER SET utf8");
 
 	$query = $con->query($source);
 
@@ -32,17 +40,6 @@
 			}
 			echo "</tbody>
 			</table>";
-
-
-
-
-
-
-
-
-
-
-
 	    //$meta = $query->getColumnMeta(0);
 	    //var_dump($meta);
 	    //echo $meta['name'];
