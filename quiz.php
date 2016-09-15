@@ -232,6 +232,7 @@
 	});
 
 	function load(page){
+		$('#result').html('');
 		$.post(
 			'questions/english/page' + page + '.html',
 			{source : ""},
@@ -306,15 +307,23 @@
 
 	function compareResults(){
 		if (typeof expected != 'undefined') {
-			if(JSON.stringify(getJsonFromTable()) == JSON.stringify(expected)){
-				$('table').css('background', 'rgb(100, 255, 100)');
-				return true;
-			}else{
-				$('table').css('background', 'rgb(255, 100, 100)');
-				return false;
-			}
+			requestJsonCompare(JSON.stringify(getJsonFromTable()),JSON.stringify(expected));
 		}
-		return JSON.stringify(getJsonFromTable()) == JSON.stringify(expected);
+		//return JSON.stringify(getJsonFromTable()) == JSON.stringify(expected);
 		//return deepCompare(getJsonFromTable(), expected);
+	}
+
+	function requestJsonCompare(expected, source){
+		$.post(
+			'request-json-compare.php',
+			{expected: JSON.stringify(expected), source: JSON.stringify(source)},
+			function(data){
+				if(data.indexOf("true")!=-1){
+					$('table').css('background', 'rgb(100, 255, 100)');
+				}else{
+					$('table').css('background', 'rgb(255, 100, 100)');
+				}
+			}
+			);
 	}
 </script>
