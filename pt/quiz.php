@@ -56,8 +56,6 @@
 		?>
 		<div id="page">
 			<form class="form" onSubmit="return false;">
-				
-
 				<div id="question" page="0"></div>
 				<span class="clear"></span>
 				<div id="current-language">RQL</div>
@@ -76,10 +74,10 @@
 
 				<textarea id="source" class="code-input full" placeholder="Sua resposta aqui"></textarea>
 				
-				<button id="prev" class="btn-big third">Questão anterior</button>
-				<button id="change-language" class="btn-big sixth">Trocar para SQL</button>
-				<button id="submit" class="btn-big sixth">Testar</button>
-				<button id="next" class="btn-big third">Próxima questão</button>
+				<!--<button id="prev" class="btn-big third">Questão anterior</button>-->
+				<!--<button id="change-language" class="btn-big sixth">Trocar para SQL</button>-->
+				<button id="submit" class="btn-big half">Testar</button>
+				<button id="next" class="btn-big half">Iniciar</button>
 
 				<span class="clear"></span>
 				<div id="result" class="code-input full">
@@ -97,12 +95,14 @@
 </html>
 
 <script>
-	
+	//VARIABLE FOR TIME COUNT
+	var initialTime = performance.now();
+
 	//INITIALIZE TOOLTIPS, LOAD THE FIRST PAGE AND SET THE INPUT BACKGROUND
 	$(document).ready(function(){
 		$('[data-toggle="tooltip"]').tooltip({html: true});
 		load(0);
-		$('#source').css('background', 'rgb(255, 255, 150)');
+		$('#source').css('background', 'rgb(255, 220, 130)');
 	});
 
 	//CLEAR TAGS HTML FROM A STRING
@@ -135,6 +135,7 @@
 				}
 				else{
 					$('#result').html(sqlQuery);
+					addError();
 				}
 			}
 			);
@@ -142,7 +143,6 @@
 
 	function getSqlResult(){
 		var sqlQuery = $('#source').val();
-		console.log(sqlQuery);
 		getData(sqlQuery);
 	}
 
@@ -154,32 +154,43 @@
 		}
 	}
 
-	$('#submit').click(function(){
+	$('#submit').click(function(){		
 		saveQuestion();
 		getResult();
 	});
 
 	//SAVE ANSWER
 	function saveQuestion(){
+		var currentTime = performance.now();
+		alert(parseInt((currentTime - initialTime) / 1000));
 		var idQuestion = $('#question').attr('page');
 		var idLogin = $('input[name=idLogin]').val();
 		var answer = $('#source').val();
 
 		if($('#current-language').html() == "RQL"){
-			var language = "rqlAnswer";
+			var language = "rql";
 		}else{
-			var language = "sqlAnswer";
+			var language = "sql";
 		}
 		$.post(
 			'save-question.php',
-			{source : answer,
+			{
+				source : answer,
 				idQuestion: idQuestion,
 				idLogin: idLogin,
-				language: language},
+				language: language,
+				timespent: parseInt((currentTime - initialTime) / 1000)
+			},
 				function(data){
 					console.log("Question " + idQuestion + " saved!");
 				}
-				);
+				).done(function(msg){
+					//DISPLAY ERRORS ON REQUISITION
+					//console.log(msg);
+					initialTime = performance.now();
+				}).fail(function(xhr, status, error){
+					console.log(error);
+				});
 	}
 
 	//GET ANSWER
@@ -212,11 +223,47 @@
 	var minPage = 0;
 	var maxPage = 11;
 
-	$(document).ready(function(){
+	//LOCK THE PREVIOUS AND LANGUAGE BUTTON AND MAKE THE QUESTIONNAIRE SEQUENSE
+	$('#prev, #change-language').hide();
+	var languageChanged = false;
+	$('#next').click(function(){
+		var page = $('#question').attr('page');
+		if(page == 0){
+			if(!confirm('Iniciar teste?'))return;
+			$('#next').html("Trocar linguagem");
+			next();
+			return;
+		}
+		if(page < 0){
+			next();
+			return;
+		}
 
+		if(!confirm('Gravar questão e avançar?\nNão será possível retornar'))return;
+		
+		if(page == maxPage-1 && languageChanged == true){
+			window.location="index.php";
+		}
+
+		if(languageChanged == false){
+			changeLanguage();
+			languageChanged = true;
+			$('#next').html("Próxima questão");
+		}else{
+			next();
+			languageChanged = false;
+			$('#next').html("Trocar linguagem");
+		}
+
+		if(page == maxPage-1 && languageChanged == true){
+			$('#next').html("Finalizar");
+		}
+
+		$('#result').html('<span class="placeholder">Aqui vão os resultados</span>');
 	});
 
-	$('#prev').click(function(){
+	$('#prev').click(function(){prev()});
+	function prev(){
 		var page = $('#question').attr('page');
 		if(parseInt(page) <= minPage){
 			return;
@@ -225,16 +272,17 @@
 		$('#question').attr('page', parseInt(page)-1);
 		
 		load(parseInt(page)-1);
-	});
+	}
 
-	$('#next').click(function(){
+	//$('#next').click(function(){next()});
+	function next(){
 		var page = $('#question').attr('page');
 		if(parseInt(page) >= maxPage) return;
 
 		$('#question').attr('page', parseInt(page)+1);
 
 		load(parseInt(page)+1);
-	});
+	}
 
 	function load(page){
 		$('#result').html('');
@@ -273,10 +321,12 @@
 			$('#result').fadeIn(1000);
 		}
 		getAnswer();
+		initialTime = performance.now();
 	}
 
 	//CHANGE THE LANGUAGE
-	$('#change-language').click(function(){
+	$('#change-language').click(function(){changeLanguage()});
+	function changeLanguage(){
 		if($('#change-language').hasClass('disabled')){
 			return;
 		}
@@ -289,10 +339,10 @@
 			$('#current-language').html("RQL");
 			$('#change-language').html("Trocar para SQL");
 			$('.symbol-menu').slideDown(500);
-			$('#source').css('background', 'rgb(255, 255, 150)');
+			$('#source').css('background', 'rgb(255, 220, 130)');
 		}
 		getAnswer();
-	});
+	};
 
 	//DISPLAY THE EXAMPLE DATABASE
 	$('#db-modal').click(function(){
@@ -315,6 +365,8 @@
 	function compareResults(){
 		if (typeof expected != 'undefined') {
 			requestJsonCompare(JSON.stringify(getJsonFromTable()),JSON.stringify(expected));
+		}else{
+			addError();
 		}
 		//return JSON.stringify(getJsonFromTable()) == JSON.stringify(expected);
 		//return deepCompare(getJsonFromTable(), expected);
@@ -328,9 +380,33 @@
 				if(data.indexOf("true")!=-1){
 					$('table').css('background', 'rgb(100, 255, 100)');
 				}else{
+					addError();
 					$('table').css('background', 'rgb(255, 100, 100)');
 				}
 			}
 			);
+	}
+
+	function addError(){
+		if($('#current-language').html() == "RQL"){
+			var language = "rql";
+		}else{
+			var language = "sql";
+		}
+		var idQuestion = $('#question').attr('page');
+		var idLogin = $('input[name=idLogin]').val();
+
+		$.post(
+			'add-error.php',
+			{idQuestion: idQuestion,
+				idLogin: idLogin,
+				language: language},
+				function(data){
+
+				}
+		).done(function(msg){
+			//DISPLAY ERRORS ON REQUISITION
+			console.log(msg);
+		});
 	}
 </script>

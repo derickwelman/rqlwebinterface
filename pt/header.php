@@ -1,7 +1,7 @@
 <div id="header">
 	<a href="index.php"><img id="logo" src="images/logo.svg" alt="RQL"></a>
 	<span> To SQL Translator</span>
-	<ul>
+	<ul id="nav">
 		<?php
 		session_start();
 		if(isset($_SESSION['idLogin'])){
