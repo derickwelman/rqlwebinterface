@@ -13,10 +13,14 @@ CREATE TABLE Login(
 );
  
 CREATE TABLE Answer(
-	idQuestion 	INT 				NOT NULL,
-	idLogin		INT 				NOT NULL,
-	rqlAnswer 		VARCHAR(1000)	NULL,
-	sqlAnswer 		VARCHAR(1000)	NULL,
+	idQuestion 	INT 			NOT NULL,
+	idLogin		INT 			NOT NULL,
+	rqlAnswer 	VARCHAR(1000)	NULL,
+	sqlAnswer 	VARCHAR(1000)	NULL,
+	rqlTime		DOUBLE 			NOT NULL,
+	sqlTime 	DOUBLE			NOT NULL,
+	rqlErrors	INT 			NOT NULL,
+	sqlErrors	INT 			NOT NULL,
 	CONSTRAINT pk_answer PRIMARY KEY (idQuestion, idLogin),
 	CONSTRAINT fk_answer_user FOREIGN KEY (idLogin) REFERENCES Login (idLogin)		
 );

@@ -47,7 +47,7 @@ body{
 *{
 	margin:0;
 	padding:0;
-	font-family:'Ubuntu Regular';
+	font-family:'Ubuntu Regular', calibri;
 	border-radius:0;
 	outline:none;
 }
@@ -83,8 +83,23 @@ body{
 }
 
 #header ul{
+	background: rgb(140, 40, 40);
 	float:right;
 	margin:0 20px 0 0;
+	background: rgb(140, 40, 40);
+}
+
+@media(max-width: 900px){
+	#header ul{
+		display: inline-block;
+		width: 100%;
+		margin:0 auto;
+	}
+
+	#header span{
+		font-size: 23px;
+		margin-top: 40px;
+	}
 }
 
 #header ul li{
@@ -120,7 +135,8 @@ body{
 	float:left;
 	padding:10px 20px 10px 20px;
 	resize: none;
-	min-height: 175px !important;
+	height: 175px !important;
+	overflow: auto;
 }
 
 .placeholder{
@@ -188,6 +204,7 @@ body{
 	transition:left 0.5s;
 	z-index: 999;
 	cursor: pointer;
+	border:rgb(200,100,100) 1px solid;
 }
 
 #show-db:hover{
@@ -220,6 +237,18 @@ body{
 	top: 5%;
 	background:white;
 	padding:20px;
+}
+
+#db-modal:after{
+	content:"x";
+	position: absolute;
+	right: 0;
+	top: 0;
+	background: rgb(140, 40, 40);
+	color: white;
+	padding:10px 20px 25px 35px;
+	font-size: 22px;
+	border-radius: 0 0 0 100px;
 }
 
 /* REGISTER */
@@ -298,10 +327,6 @@ footer{
 	background:rgb(221,239,244);
 }
 
-.warning{
-	background: rgb(230, 255, 50);
-}
-
 /* -------------------------TRANSLATION RESULTS--------------------------*/
 .half{
 	width: 50% !important;
@@ -323,6 +348,7 @@ footer{
 .content-page{
 	box-sizing: border-box;
 	padding: 20px 40px;
+	width: 100%;
 }
 
 .content-page hr{
@@ -334,34 +360,57 @@ footer{
 	font-weight: bold;
 }
 
-.content-page table{
-
-}
-
 .content-page table tr td{
 	padding:10px;
 	border:1px gray solid;
 	text-align: center;
 }
 
+.content-page table, .relationship{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.relationship{
+	margin-left:20px;
+	margin-top:40px;
+}
+
 .rql-example, .sql-example{
 	font-size: 18px;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+	padding:10px 15px;
+	border-radius:5px;
+	background:#f5f5f5;
+	display: inline-block;
+	width: 49% !important;
+	border:1px #aaa solid;
+	vertical-align: top;
 }
 
 .rql-example{
-	color: rgb(225, 120, 0);
 }
 
 .rql-example::before{
-	content:"(RQL) -> ";
+	content:"Código RQL:";
+	display:block;
+	color: rgb(225, 120, 0);
 }
 
 .sql-example{
-	color: rgb(50, 150, 150);
 }
 
 .sql-example::before{
-	content:"(SQL) -> ";
+	content:"Código SQL:";
+	display: block;
+	color: rgb(50, 150, 150);
+}
+
+.sql-example::before, .rql-example::before{
+	margin-bottom: 10px;
+	border:1px #bbb solid;
+	border-width: 0 0 1px 0;
 }
 
 #compare-operations *{
@@ -370,4 +419,40 @@ footer{
 
 .tab{
 	margin-left: 70px;
+}
+
+.rql-back{
+	background:rgb(255,220,130);
+	padding:3px 8px;
+}
+
+.sql-back{
+	background:rgb(150,255,255);
+	padding:3px 8px;
+}
+
+.warning{
+	display: block;
+	background: rgb(230, 255, 50);
+	padding:3px 8px;
+	border-radius: 5px;
+}
+
+#example-db{
+	white-space: nowrap;
+	min-width: 100%;
+	overflow-x: auto;
+}
+
+#back-to-top{
+	position: fixed;
+	top:calc(50% - 30px);
+	left:0;
+	background:rgb(140,40,40);
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	padding:10px 15px;
+	font-size: 20px;
+	font-weight: bold;
 }
