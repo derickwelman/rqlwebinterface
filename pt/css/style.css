@@ -353,6 +353,7 @@ footer{
 
 .content-page hr{
 	border-color: #ccc;
+	border-width: 6px;
 }
 
 .content-page h2{
@@ -455,4 +456,91 @@ footer{
 	padding:10px 15px;
 	font-size: 20px;
 	font-weight: bold;
+}
+
+/* -------------------------AFTER QUESTIONS--------------------------*/
+#after-quiz{
+	text-align: center;
+}
+
+.rate{
+	display: inline-block;
+	width: 50px;
+	height:50px;
+	visibility: hidden;
+}
+
+.rate:before{
+	content: "";
+	visibility: visible;
+	display: inline-block;
+	width:50px;
+	height: 50px;
+	background-size: contain;
+}
+
+.rate-1:before{
+	background: url("../images/rate-1-gray.png");
+}
+
+.rate-2:before{
+	background: url("../images/rate-2-gray.png");
+}
+
+.rate-3:before{
+	background: url("../images/rate-3-gray.png");
+}
+
+.rate-4:before{
+	background: url("../images/rate-4-gray.png");
+}
+
+.rate-5:before{
+	background: url("../images/rate-5-gray.png");
+}
+
+.rate-1:checked:before, .rate-1:hover:before{
+	background: url("../images/rate-1.png");
+}
+
+.rate-2:checked:before, .rate-2:hover:before{
+	background: url("../images/rate-2.png");
+}
+
+.rate-3:checked:before, .rate-3:hover:before{
+	background: url("../images/rate-3.png");
+}
+
+.rate-4:checked:before, .rate-4:hover:before{
+	background: url("../images/rate-4.png");
+}
+
+.rate-5:checked:before, .rate-5:hover:before{
+	background: url("../images/rate-5.png");
+}
+
+.after-quiz-question{
+	display: block;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.radio-group{
+	display: block;
+}
+
+#after-quiz input[type=submit]{
+	background:rgb(242,175,58);
+	border:none;
+	padding: 10px 0px;
+	width: 100%;
+	color: rgb(102,68,17);
+	font-size: 20px;
+	font-weight: bold;
+	margin:20px 0 10px 0;
+}
+
+#after-quiz input[type=submit]:hover{
+	background: rgb(255, 190, 70);
 }
