@@ -162,7 +162,6 @@
 	//SAVE ANSWER
 	function saveQuestion(){
 		var currentTime = performance.now();
-		alert(parseInt((currentTime - initialTime) / 1000));
 		var idQuestion = $('#question').attr('page');
 		var idLogin = $('input[name=idLogin]').val();
 		var answer = $('#source').val();
@@ -242,7 +241,7 @@
 		if(!confirm('Gravar questão e avançar?\nNão será possível retornar'))return;
 		
 		if(page == maxPage-1 && languageChanged == true){
-			window.location="index.php";
+			window.location="after-quiz.php";
 		}
 
 		if(languageChanged == false){

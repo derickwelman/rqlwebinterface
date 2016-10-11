@@ -168,7 +168,7 @@
 			</div>
 			<span class="clear"></span>
 			<p style="margin-top:20px;">Nesse caso uma Venda pode se relacionar com vários ItemVenda, mas um ItemVenda pode pertencer a somente uma Venda. O mesmo acontece com o produto com relação ao ItemVenda.</p>
-			<h1>Operações</h1>
+			<h1 id="operacoes">Operações</h1>
 
 			<ul id="compare-operations">
 
@@ -177,7 +177,7 @@
 				<!---------------------------------- RELAÇÃO ---------------------------------->
 				<li>
 					<h2 id="relacao">Relação</h2>
-					<p>Na RQL quando uma query é formada somente pelo nome de uma RelVar, ela retorna todos os atributos e tuplas da mesma.</p>
+					<p>Na RQL quando uma consulta é formada somente pelo nome de uma RelVar, ela retorna todos os atributos e tuplas da mesma.</p>
 					<p>Exemplo: Serão selecionados todos os dados da RelVar Venda.</p>
 					<ul>
 						<li class="rql-example">Venda;</li>
@@ -454,8 +454,6 @@
 						<p>A RQL tem um funcionamento um pouco diferente quanto a renomeação em relação à SQL. Quando é selecionado e renomeado algo em SQL da forma que está exemplificado acima, são executados duas operaçãos juntas: Projeção e renomeação e então são retornados somente os atributos especificados com suas devidas alterações. Já na RQL é realizada somente a renomeação, que sempre retorna todos os atributos da relação</p>
 					</li>
 
-					<hr>
-
 					<p>Para as três seguintes operações, considere o esquema a seguir.</p>
 					<div id="example-db">
 						<table>
@@ -511,6 +509,9 @@
 						</table>
 					</div>
 
+					<hr>
+
+					<!---------------------------------- União ---------------------------------->
 					<li>
 						<h2 id="uniao">União</h2>
 						<p>Une verticalmente duas relações que possuam a mesma quantidade de atributos e que sejam de tipos compatíveis.</p>
@@ -555,6 +556,7 @@
 
 					<hr>
 
+					<!---------------------------------- Intersecção ---------------------------------->
 					<li>
 						<h2 id="interseccao">Intersecção</h2>
 						<p>Semelhante à união, porém retorna todas as tuplas que sejam iguais entre duas relações.</p>
@@ -585,6 +587,7 @@
 
 					<hr>
 
+					<!---------------------------------- Diferença ---------------------------------->
 					<li>
 						<h2 id="diferenca">Diferença</h2>
 						<p>Assim com a União e Intersecção, precisa de duas relações compatíveis e retorna todos os elementos da relação à esquerda que não estejam presentes na relação da direita.</p>
@@ -1025,6 +1028,8 @@
 							</li>
 						</ul>
 					</li>
+
+					<hr>
 
 					</ul>
 						<h1>Referências</h1>
