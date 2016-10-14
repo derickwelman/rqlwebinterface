@@ -5,7 +5,7 @@
 		<?php
 		session_start();
 		if(isset($_SESSION['idLogin'])){
-			echo '<li>Bem vindo(a) ' . $_SESSION['name'] . '</li>';
+			echo '<a href="after-quiz.php"><li>FEEDBACK</li></a>';
 			echo '<a href="tutorial.php"><li>TUTORIAL</li></a>';
 			echo '<a href="index.php"><li>TRADUTOR</li></a>';
 			echo '<a href="quiz.php"><li>QUIZ</li></a>';

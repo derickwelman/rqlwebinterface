@@ -8,33 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="sources/bootstrap/css/bootstrap.min.css">
 	<script type="text/javascript" src="sources/jquery-1.12.1.min.js"></script>
 	<script type="text/javascript" src="sources/bootstrap/js/bootstrap.min.js"></script>
-	<script>
-		function addSymbol(symbol, modifier){
-			var source = $('#source');
-			var pos = source.getCursorPosition();
-			var content = source.val();
-			source.val(content.substring(0, pos) + symbol + content.substring(pos, content.length));
-			source.focus();
-			source[0].setSelectionRange(pos + modifier, pos + modifier);
-		} 
-
-		$.fn.extend({
-			getCursorPosition: function() {
-				var el = $(this).get(0);
-				var pos = 0;
-				if('selectionStart' in el){
-					pos = el.selectionStart;
-				}else if('selection' in document){
-					el.focus();
-					var Sel = document.selection.createRange();
-					var SelLength = document.selection.createRange().text.length;
-					Sel.moveStart('character', -el.value.length);
-					pos = Sel.text.length - SelLength
-				}
-				return pos;
-			}
-		});
-	</script>
 
 </head>
 <body>

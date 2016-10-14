@@ -24,3 +24,11 @@ CREATE TABLE Answer(
 	CONSTRAINT pk_answer PRIMARY KEY (idQuestion, idLogin),
 	CONSTRAINT fk_answer_user FOREIGN KEY (idLogin) REFERENCES Login (idLogin)		
 );
+
+CREATE TABLE ComparationQuestion(
+	idLogin 		INT 			NOT NULL,
+	questionNumber	INT 			NOT NULL,
+	answer 			INT 			NOT NULL,
+	CONSTRAINT pk_comparation_question PRIMARY KEY (idLogin, questionNumber),
+	CONSTRAINT fk_comparation_question_idlogin FOREIGN KEY (idLogin) REFERENCES Login (idLogin)
+);

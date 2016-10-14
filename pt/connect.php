@@ -5,32 +5,30 @@
 </head>
 <body>
 	<?php
-	$host = "localhost";
+	$dbhost = "localhost";
 	$db = "Bees";
-	$user = "postgres";
-	$pass = "postgres";
-	$port = 5432;
+	$dbuser = "guest";
+	$dbpass = "guest";
+	$dbport = 5432;
 
-	$con = new PDO("pgsql: host=$host; port=$port; dbname=$db; user=$user; password=$pass;");
+	$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+
 	$source = $_POST['source'];
 	$source = str_replace('"', "'", $source);
-	/*$con = new PDO("mysql:host=localhost;dbname=bees", "root", "");*/ 
-	$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-	//$con->exec("SET CHARACTER SET utf8");
 
 	$query = $con->query($source);
-
+	
+	if($query){
 	echo "
 	<table class=\"table table-hover\">
 		<thead>";
-
 			foreach(range(0, $query->columnCount() -1) as $column){
 				$meta = $query->getColumnMeta($column);
 				echo "<th>" . $meta['name'] . "</th>";
 			}
-			echo "
-				</thead>
-				<tbody>";
+		echo "
+			</thead>
+			<tbody>";
 			while($row = $query->fetch(PDO::FETCH_NUM)){
 				echo "<tr>";
 				foreach($row as $column => $value){
@@ -38,11 +36,11 @@
 				}
 				echo "</tr>";
 			}
-			echo "</tbody>
-			</table>";
-	    //$meta = $query->getColumnMeta(0);
-	    //var_dump($meta);
-	    //echo $meta['name'];
+		echo "</tbody>
+	</table>";
+	}else{
+		echo "<span style=\"background:rgb(255, 100, 100);padding:10px;display:block;\">Erro na consulta SQL. Verifique seu código.</span>";
+	}
 			?>
 		</body>
 		</html>

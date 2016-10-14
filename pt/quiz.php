@@ -225,22 +225,24 @@
 	//LOCK THE PREVIOUS AND LANGUAGE BUTTON AND MAKE THE QUESTIONNAIRE SEQUENSE
 	$('#prev, #change-language').hide();
 	var languageChanged = false;
+
 	$('#next').click(function(){
 		var page = $('#question').attr('page');
+		if(page < 0){
+			next();
+			return;
+		}
+
 		if(page == 0){
 			if(!confirm('Iniciar teste?'))return;
 			$('#next').html("Trocar linguagem");
 			next();
 			return;
 		}
-		if(page < 0){
-			next();
-			return;
-		}
 
 		if(!confirm('Gravar questão e avançar?\nNão será possível retornar'))return;
 		
-		if(page == maxPage-1 && languageChanged == true){
+		if(page == maxPage && languageChanged == true){
 			window.location="after-quiz.php";
 		}
 
@@ -254,7 +256,7 @@
 			$('#next').html("Trocar linguagem");
 		}
 
-		if(page == maxPage-1 && languageChanged == true){
+		if(page == maxPage && languageChanged == true){
 			$('#next').html("Finalizar");
 		}
 
@@ -277,6 +279,7 @@
 	function next(){
 		var page = $('#question').attr('page');
 		if(parseInt(page) >= maxPage) return;
+		saveQuestion();
 
 		$('#question').attr('page', parseInt(page)+1);
 
@@ -296,7 +299,7 @@
 		if(page == minPage){
 			$('#prev').addClass('disabled');
 			$('#next').removeClass('disabled');
-		}else if(page == maxPage){
+		}else if(page == maxPage && languageChanged == false){
 			$('#next').addClass('disabled');
 			$('#prev').removeClass('disabled');
 		}else{
@@ -329,6 +332,9 @@
 		if($('#change-language').hasClass('disabled')){
 			return;
 		}
+		
+		saveQuestion();
+		
 		if($('#current-language').html()=="RQL"){
 			$('#current-language').html("SQL");
 			$('#change-language').html("Trocar para RQL");
