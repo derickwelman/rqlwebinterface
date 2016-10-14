@@ -215,7 +215,7 @@
 
 				<!---------------------------------- PROJEÇÃO ---------------------------------->
 				<li>
-					<h2 id="projecao">Projeção</h2>
+					<h2 id="projecao">Projeção <span class="orange">¢</span></h2>
 					<p>Operação que filtra horizontalmente o resultado de uma consulta, i.e., limita os atributos que serão selectionados na operação.</p>
 					<p>Exemplo 1: Será selecionado somente o atributo idProduto da RelVar Produto.</p>
 					<p>Exemplo 2: Serão selecionados os atributos idProduto e nome da RelVar Produto.</p>
@@ -288,7 +288,7 @@
 
 					<!---------------------------------- SELEÇÃO ---------------------------------->
 					<li>
-						<h2 id="selecao">Seleção</h2>
+						<h2 id="selecao">Seleção <span class="orange">£</span></h2>
 						<p>Operação que filtra verticalmente as tuplas, limitando os resultados de acordo com algum critério.</p>
 						<p>Exemplo 1: Serão selecionados somente as tuplas da RelVar Produto em que o nome seja igual a "Mouse".</p>
 						<p>Exemplo 1: Serão selecionados somente as tuplas da RelVar Produto em que o valor seja maior que 9 e menor que 50.</p>
@@ -370,7 +370,7 @@
 
 					<!---------------------------------- RENOMEAÇÃO ---------------------------------->
 					<li>
-						<h2 id="renomeacao">Renomeação</h2>
+						<h2 id="renomeacao">Renomeação <span class="orange">§</span></h2>
 						<p>Renomeia um ou mais atributos de uma relação. O atributo a esquerda sempre representa o nome original, enquanto o da direita corresponde ao novo nome do atributo.</p>
 						<p>Exemplo 1: Retorna os atributos da RelVar Produto com a alteração do idProduto para "codProduto".</p>
 						<p>Exemplo 1: Retorna os atributos da RelVar Produto com a alteração do idProduto para "codProduto" e do nome para "marca".</p>
@@ -513,7 +513,7 @@
 
 					<!---------------------------------- União ---------------------------------->
 					<li>
-						<h2 id="uniao">União</h2>
+						<h2 id="uniao">União <span class="orange">v</span></h2>
 						<p>Une verticalmente duas relações que possuam a mesma quantidade de atributos e que sejam de tipos compatíveis.</p>
 						<p>Exemplo: Selecionar todas as tuplas das tabelas 1 e 2.</p>
 						<ul>
@@ -558,7 +558,7 @@
 
 					<!---------------------------------- Intersecção ---------------------------------->
 					<li>
-						<h2 id="interseccao">Intersecção</h2>
+						<h2 id="interseccao">Intersecção <span class="orange">^</span></h2>
 						<p>Semelhante à união, porém retorna todas as tuplas que sejam iguais entre duas relações.</p>
 						<p>Exemplo: Selecionar somente as tuplas que sejam iguais entre as duas tabelas.</p>
 						<ul>
@@ -589,7 +589,7 @@
 
 					<!---------------------------------- Diferença ---------------------------------->
 					<li>
-						<h2 id="diferenca">Diferença</h2>
+						<h2 id="diferenca">Diferença <span class="orange">-</span></h2>
 						<p>Assim com a União e Intersecção, precisa de duas relações compatíveis e retorna todos os elementos da relação à esquerda que não estejam presentes na relação da direita.</p>
 						<p>Exemplo: Retornar todas as tuplas que existam na Tabela1 e que não existam na Tabela2.</p>
 						<ul>
@@ -624,7 +624,7 @@
 
 					<!---------------------------------- JUNÇÃO ---------------------------------->
 					<li>
-						<h2 id="juncao">Junção</h2>
+						<h2 id="juncao">Junção <span class="orange">[]</span></h2>
 						<p>Une horizontalmente duas relações de acordo com um atributo que tenham em comum. Pode ser realizadode duas formas: Junção ou Junção natural.</p>
 						<p>A junção natural tenta identificar atributos com o mesmo nome entre as relações utilizadas, caso encontre mais de uma correspondência, então a operação é ambígua e um erro é lançado</p>
 						<p>Já a junção comum requer a especificação de que atributos estão sendo utilizados para a junção, 1 de cada tabela.</p>
@@ -735,7 +735,7 @@
 
 					<!---------------------------------- PRODUTO CARTESIANO ---------------------------------->
 					<li>
-						<h2 id="produto">Produto cartesiano</h2>
+						<h2 id="produto">Produto cartesiano <span class="orange">x</span></h2>
 						<p>Faz referência de todas as tuplas da primeira relação com todas as tuplas da segunda relação.</p>
 						<p>Exemplo: Retornar todas as vendas relacionadas com todos os produtos</p>
 						<ul>
@@ -851,7 +851,7 @@
 					<hr>
 
 					<li>
-						<h2 id="fecho">Fecho transitivo</h2>
+						<h2 id="fecho">Fecho transitivo <span class="orange">&lt;&lt;&gt;&gt;</span></h2>
 						<p>
 						De acordo com a regra da trasitividade:<br>
 						A->B<br>
@@ -933,11 +933,11 @@
 							<span class="tab"/>Ordem AS ordem2 ON ordem1.posterior = ordem2.anterior WHERE ordem2.posterior != "";</li>
 						</ul>
 					</li>
-
+					
 					<hr>
-
+					
 					<li>
-						<h2 id="divisao">Divisão</h2>
+						<h2 id="divisao">Divisão <span class="orange">/</span></h2>
 						<p>Esta operação possui um divisor e um dividendo que deve ser um subconjunto do divisor. Seu retorno são as tuplas do dividendo que se relacionam com todas as tuplas do divisor. Para entender melhor essa operação veja as relações <i>Venda</i> e <i>Produto</i>.</p>
 						<table style="float:left">
 							<thead>
@@ -954,7 +954,7 @@
 								<td>1</td>
 								<td>1</td>
 							</tr>
-
+							
 							<tr>
 								<td>1</td>
 								<td>2</td>

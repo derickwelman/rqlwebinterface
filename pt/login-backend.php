@@ -5,6 +5,14 @@
 </head>
 <body>
 	<?php
+	$dbhost = "localhost";
+	$db = "Bees";
+	$dbuser = "postgres";
+	$dbpass = "postgres";
+	$dbport = 5432;
+
+	$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+
 	if(!isset($_POST['login'])){
 		echo '<script>alert("Error when logging in!");window.location="login.php"</script>';
 		exit();
@@ -13,19 +21,17 @@
 	$login = $_POST['login'];
 	$pass = $_POST['pass'];
 
-	$con = new PDO("mysql:host=localhost;dbname=questionnaire", "root", ""); 
 	$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-	$con->exec("SET CHARACTER SET utf8");
 
 	$query = $con->query("SELECT * FROM Login WHERE login = '$login' AND pass = '$pass'");
 	if($query->rowCount()!=1){
-		echo '<script>alert("Incorrect credentials!");window.location="login.php"</script>';
+		echo '<script>alert("Credenciais incorretas!");window.location="login.php"</script>';
 		exit();
 	}
 
 	session_start();
 	while($row = $query->fetch(PDO::FETCH_OBJ)){
-		$idLogin = $row->idLogin;
+		$idLogin = $row->idlogin;
 		$name = $row->name;
 	}
 

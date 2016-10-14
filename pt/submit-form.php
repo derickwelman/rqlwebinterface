@@ -17,10 +17,38 @@
 		<?php
 		require_once("header.php");
 		require_once("require_login.php");
-		echo '<input type="hidden" name="idLogin" value="'.$_SESSION['idLogin'].'">';
+		
+		$dbhost = "localhost";
+		$db = "Bees";
+		$dbuser = "postgres";
+		$dbpass = "postgres";
+		$dbport = 5432;
+
+		$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+
+		$idLogin = $_SESSION['idLogin'];
+
+		$insertValues = "";
+		for($i = 1; $i < 7; $i++){
+			$question = $_POST['question'.$i];
+			$insertValues .= "($idLogin, $i, $question), ";
+		}
+
+		$insertValues = substr($insertValues, 0, strlen($insertValues) - 2);
+		
+		$con->query("DELETE FROM ComparationQuestion WHERE idLogin = $idLogin");
+		$query = $con->query("INSERT INTO ComparationQuestion (idLogin, questionNumber, answer) VALUES $insertValues;")
+		
 		?>
+
 		<div id="page" class="content-page">
-			<h1 style="text-align:center;line-height:350px;font-size:40px;">Obrigado por nos enviar sua opnião!</h1>
+			<h1 style="text-align:center;font-size:40px;padding:100px 0;">
+			<?php if($query){ ?>
+				Obrigado por nos enviar sua opnião!
+			<?php }else{ ?>
+				Erro ao registrar informações!<br>Por favor tente novamente mais tarde.
+			<?php } ?>
+			</h1>
 		</div>
 		<span class="clear" style="height:80px"></span>
 		<footer>

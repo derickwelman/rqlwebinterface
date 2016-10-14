@@ -10,12 +10,14 @@ try{
 
 	if($con){
 		echo "Succefully connected to <b>$db</b> database";
+	}else{
+		echo $con;
 	}
 }catch(PDOException $e){
 	echo $e->getMessage();
 }
 
-$con->query("CREATE TABLE IF NOT EXISTS Hive(
+/*$con->query("CREATE TABLE IF NOT EXISTS Hive(
 	idHive 		SERIAL 	NOT NULL PRIMARY KEY,
 	positionX 	INT 	NOT NULL,
 	positionY 	INT 	NOT NULL,
@@ -199,6 +201,35 @@ $con->query("INSERT INTO Hierarchy (idInferior, idSuperior) VALUES
 	(6, 7),
 	(7, 2),
 	(8, 6);
-	");
+	");*/
 
-	?>
+/*----------------------- QUESTIONNAIRE -----------------------*/
+
+$con->query("CREATE TABLE IF NOT EXISTS Login(
+	idLogin		SERIAL 			NOT NULL PRIMARY KEY,
+	name 		VARCHAR(50) 	NOT NULL,
+	institution VARCHAR(100) 	NOT NULL,
+	login 		VARCHAR(50) 	NOT NULL,
+	pass 		VARCHAR(50) 	NOT NULL,
+	country 	VARCHAR(50) 	NOT NULL,
+	experience 	INT 			NOT NULL
+);" );
+
+$con->query("CREATE TABLE IF NOT EXISTS Answer(
+	idQuestion 	INT 			NOT NULL,
+	idLogin		INT 			NOT NULL REFERENCES Login (idLogin),
+	rqlAnswer 	VARCHAR(1000)	NULL,
+	sqlAnswer 	VARCHAR(1000)	NULL,
+	rqlTime		DECIMAL			NOT NULL,
+	sqlTime 	DECIMAL			NOT NULL,
+	rqlErrors	INT 			NOT NULL,
+	sqlErrors	INT 			NOT NULL
+);" );
+
+$con->query("CREATE TABLE IF NOT EXISTS ComparationQuestion(
+	idLogin 		INT 			NOT NULL REFERENCES Login (idLogin),
+	questionNumber	INT 			NOT NULL,
+	answer 			INT 			NOT NULL
+);" );
+
+?>

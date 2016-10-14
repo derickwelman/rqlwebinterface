@@ -2,11 +2,20 @@
 <html>
 <head>
 	<title></title>
+	<meta charset="utf-8">
 </head>
 <body>
 	<?php
+	$dbhost = "localhost";
+	$db = "Bees";
+	$dbuser = "postgres";
+	$dbpass = "postgres";
+	$dbport = 5432;
+
+	$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+
 	if(!isset($_POST['login'])){
-		echo '<script>alert("Error when registering new user!");window.location="register.html"</script>';
+		echo '<script>alert("Erro ao registrar novo usuário!");window.location="register.php"</script>';
 		exit();
 	}
 	
@@ -17,19 +26,17 @@
 	$pass = $_POST['pass'];
 	$experience = $_POST['experience'];
 
-	$con = new PDO("mysql:host=localhost;dbname=questionnaire", "root", ""); 
 	$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-	$con->exec("SET CHARACTER SET utf8");
 
 	$query = $con->query("SELECT * FROM Login WHERE login = '$login'");
 	if($query->rowCount()>0){
-		echo '<script>alert("User name already in use!");window.location="register.html"</script>';
+		echo '<script>alert("Nome de usuário em uso!");window.location="register.php"</script>';
 		exit();
 	}
 
 	$query = $con->query("INSERT INTO Login (name, institution, login, pass, country, experience) VALUES ('$name', '$institution', '$login', '$pass', '$country', $experience);");
 
-	echo '<script>alert("Sucefully registered")window.location="index.html"</script>';
+	echo '<script>alert("Registrado com sucesso!");window.location="index.php"</script>';
 
 	?>
 </body>

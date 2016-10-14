@@ -1,10 +1,17 @@
 <?php
+$dbhost = "localhost";
+$db = "Bees";
+$dbuser = "postgres";
+$dbpass = "postgres";
+$dbport = 5432;
+
+$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+
 $idLogin = $_POST['idLogin'];
 $idQuestion = $_POST['idQuestion'];
 $language = $_POST['language'];
-$con = new PDO("mysql:host=localhost;dbname=questionnaire", "root", ""); 
+
 $con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-$con->exec("SET CHARACTER SET utf8");
 
 $query = $con->query("SELECT $language FROM Answer WHERE idQuestion = $idQuestion AND idLogin = $idLogin;");
 if($query->rowCount()==0){
