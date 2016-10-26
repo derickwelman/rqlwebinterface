@@ -29,7 +29,7 @@
 		$idLogin = $_SESSION['idLogin'];
 
 		$insertValues = "";
-		for($i = 1; $i < 7; $i++){
+		for($i = 1; $i < 10; $i++){
 			$question = $_POST['question'.$i];
 			$insertValues .= "($idLogin, $i, $question), ";
 		}

@@ -52,6 +52,22 @@
 		<?php
 		require_once("header.php");
 		require_once("require_login.php");
+
+		$dbhost = "localhost";
+		$db = "Bees";
+		$dbuser = "postgres";
+		$dbpass = "postgres";
+		$dbport = 5432;
+
+		$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+
+		$idLogin = $_SESSION['idLogin'];
+
+		$query = $con->query("SELECT * FROM Answer WHERE idLogin = $idLogin");
+		if($query->rowCount()>0){
+			echo '<script>alert("Limite de tentativas excedido!");window.location="index.php";</script>';
+		}
+
 		echo '<input type="hidden" name="idLogin" value="'.$_SESSION['idLogin'].'">';
 		?>
 		<div id="page">
@@ -95,6 +111,7 @@
 </html>
 
 <script>
+
 	//VARIABLE FOR TIME COUNT
 	var initialTime = performance.now();
 
@@ -234,13 +251,13 @@
 		}
 
 		if(page == 0){
-			if(!confirm('Iniciar teste?'))return;
+			if(!confirm('Iniciar teste? Só será permitida uma tentativa!'))return;
 			$('#next').html("Trocar linguagem");
 			next();
 			return;
 		}
 
-		if(!confirm('Gravar questão e avançar?\nNão será possível retornar'))return;
+		if(!confirm('Gravar questão e avançar?\nNão será possível retornar.'))return;
 		
 		if(page == maxPage && languageChanged == true){
 			window.location="after-quiz.php";
