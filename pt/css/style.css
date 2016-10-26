@@ -465,8 +465,8 @@ footer{
 
 .rate{
 	display: inline-block;
-	width: 51px;
-	height:51px;
+	width: 40px;
+	height:40px;
 	visibility: hidden;
 }
 
@@ -474,9 +474,9 @@ footer{
 	content: "";
 	visibility: visible;
 	display: inline-block;
-	width:51px;
-	height: 51px;
-	background-size: contain;
+	width:40px;
+	height: 40px;
+	background-size: contain !important;
 }
 
 .rate-1:before{
@@ -531,20 +531,42 @@ footer{
 }
 
 #after-quiz input[type=submit]{
-	background:rgb(242,175,58);
+	background:rgb(140, 40, 40);
 	border:none;
 	padding: 10px 0px;
 	width: 100%;
-	color: rgb(102,68,17);
+	color: white;
 	font-size: 20px;
-	font-weight: bold;
 	margin:20px 0 10px 0;
 }
 
 #after-quiz input[type=submit]:hover{
-	background: rgb(255, 190, 70);
+	background: rgb(150, 50, 50);
 }
 
 .orange{
 	color: rgb(180, 90, 0);
+}
+
+#after-quiz p{
+	font-size: 18px;
+}
+
+.impression-list{
+	width:250px;
+	margin: 0 auto;
+	position: relative;
+	margin:0 auto;
+	font-size: 18px;
+	list-style: none;
+	text-align: left;
+}
+
+.impression-list img{
+	width: 30px;
+	height: 30px;
+}
+
+.impression-list li{
+	padding: 3px 0;
 }
