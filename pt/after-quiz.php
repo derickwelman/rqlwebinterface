@@ -19,13 +19,8 @@
 		require_once("require_login.php");
 		$idLogin = $_SESSION['idLogin'];
 
-		$dbhost = "localhost";
-		$db = "Bees";
-		$dbuser = "postgres";
-		$dbpass = "postgres";
-		$dbport = 5432;
-
-		$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+		include('connection.php');
+		$con = getRootConnection();
 
 		$query = $con->query("SELECT * FROM Answer WHERE idLogin = $idLogin");
 		if($query->rowCount() < 12){

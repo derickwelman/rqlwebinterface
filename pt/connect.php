@@ -5,13 +5,8 @@
 </head>
 <body>
 	<?php
-	$dbhost = "localhost";
-	$db = "Bees";
-	$dbuser = "guest";
-	$dbpass = "guest";
-	$dbport = 5432;
-
-	$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+	include('connection.php');
+	$con = getGuestConnection();
 
 	$source = $_POST['source'];
 	$source = str_replace('"', "'", $source);

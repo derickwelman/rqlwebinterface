@@ -18,13 +18,8 @@
 		require_once("header.php");
 		require_once("require_login.php");
 		
-		$dbhost = "localhost";
-		$db = "Bees";
-		$dbuser = "postgres";
-		$dbpass = "postgres";
-		$dbport = 5432;
-
-		$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+		include('connection.php');
+		$con = getRootConnection();
 
 		$idLogin = $_SESSION['idLogin'];
 

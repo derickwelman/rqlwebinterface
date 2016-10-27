@@ -49,26 +49,26 @@
 		<div id="page">
 		<form id="register" class="center" action="register-backend.php" onSubmit="return validate();" method="POST">
 			<center>
-				<h2>Sign-up to save your results</h2><br>
-				<label for="name" >Name: </label>
+				<h2>Cadastre-se para salvar seus resultados</h2><br>
+				<label for="name" >Nome: </label>
 				<input type="text" name="name" placeholder="Name" class="input-field" required/><hr>
 
-				<label for="institution" >Institution: </label>
+				<label for="institution" >Instituição: </label>
 				<input type="text" name="institution" placeholder="Institution" class="input-field" required/><hr>
 
-				<label for="country" >Country: </label>
+				<label for="country" >País: </label>
 				<input type="text" name="country" placeholder="Country" class="input-field" required/><hr>
 
-				<label for="login" >User name: </label>
+				<label for="login" >Nome de usuário: </label>
 				<input type="text" name="login" placeholder="User name" class="input-field" required/><hr>
 
-				<label for="pass" >Password: </label>
+				<label for="pass" >Senha: </label>
 				<input type="password" name="pass" placeholder="Pass" class="input-field" required/><hr>
 
-				<label for="confirmation" >Confirm password: </label>
+				<label for="confirmation" >Confirme sua senha: </label>
 				<input type="password" name="confirmation" placeholder="Confirmation" class="input-field" required/><hr>
 
-				<label for="experience" >Approximate months of experience with relational databases: </label><hr>
+				<label for="experience" >Meses aproximados de experiência com a SQL: </label><hr>
 				<input type="number" name="experience" placeholder="Experience" value="0" class="input-field" required/>
 				<input type="submit" value="Submit" class="btn-big full">
 				<span class="clear"></span>
