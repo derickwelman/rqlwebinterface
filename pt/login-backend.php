@@ -5,13 +5,8 @@
 </head>
 <body>
 	<?php
-	$dbhost = "localhost";
-	$db = "Bees";
-	$dbuser = "postgres";
-	$dbpass = "postgres";
-	$dbport = 5432;
-
-	$con = new PDO("pgsql: host=$dbhost; port=$dbport; dbname=$db; user=$dbuser; password=$dbpass;");
+	include('connection.php');
+	$con = getRootConnection();
 
 	if(!isset($_POST['login'])){
 		echo '<script>alert("Error when logging in!");window.location="login.php"</script>';
