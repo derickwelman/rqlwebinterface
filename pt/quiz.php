@@ -139,10 +139,11 @@
 
 	function getRqlResult(){
 		var sqlQuery;
-		console.log("Translating RQL to SQL");
+		var rqlQuery = $('#source').val().replace(/¢/g, "\\p");
+		console.log("Translating RQL to SQL: " + rqlQuery);
 		$.post(
 			"request-translate-quiz.php",
-			{source : $('#source').val()},
+			{source : rqlQuery},
 			function(data){
 				sqlQuery = data;
 				console.log(sqlQuery);
