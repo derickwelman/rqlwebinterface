@@ -131,7 +131,9 @@
 				$('#result').html(data);
 				compareResults();
 			}
-			);
+			).fail(function(xhr, status, error) {
+		        alert(xhr + "; " + status + "; " + error);
+		    });
 	}
 
 	function getRqlResult(){
@@ -150,7 +152,9 @@
 					addError();
 				}
 			}
-			);
+			).fail(function(xhr, status, error) {
+		        alert(xhr + "; " + status + "; " + error);
+		    });
 	};
 
 	function getSqlResult(){
@@ -201,7 +205,9 @@
 					initialTime = performance.now();
 				}).fail(function(xhr, status, error){
 					console.log(error);
-				});
+				}).fail(function(xhr, status, error) {
+			        alert(xhr + "; " + status + "; " + error);
+			    });
 	}
 
 	//GET ANSWER
@@ -227,7 +233,9 @@
 					source.val(data);
 					console.log("Question " + idQuestion + " returned!");
 				}
-				);
+				).fail(function(xhr, status, error) {
+			        alert(xhr + "; " + status + "; " + error);
+			    });
 	}
 
 	//CONTROL THE PAGES
@@ -306,7 +314,9 @@
 			function(data){
 				$('#question').html(data);
 			}
-			);
+			).fail(function(xhr, status, error) {
+		        alert(xhr + "; " + status + "; " + error);
+		    });
 
 		if(page == minPage){
 			$('#prev').addClass('disabled');
@@ -401,7 +411,9 @@
 					$('table').css('background', 'rgb(255, 100, 100)');
 				}
 			}
-			);
+			).fail(function(xhr, status, error) {
+		        alert(xhr + "; " + status + "; " + error);
+		    });
 	}
 
 	function addError(){
@@ -424,6 +436,8 @@
 		).done(function(msg){
 			//DISPLAY ERRORS ON REQUISITION
 			console.log(msg);
-		});
+		}).fail(function(xhr, status, error) {
+	        alert(xhr + "; " + status + "; " + error);
+	    });
 	}
 </script>
