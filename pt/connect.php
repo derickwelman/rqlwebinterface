@@ -36,6 +36,6 @@
 	}else{
 		echo "<span style=\"background:rgb(255, 100, 100);padding:10px;display:block;\">Erro na consulta SQL. Verifique seu código.</span>";
 	}
-			?>
-		</body>
-		</html>
+	?>
+</body>
+</html>
