@@ -124,6 +124,7 @@
 
 	//GET QUERY RESULTS
 	function getData(query){
+		console.log('Executing query');
 		$.post(
 			"connect.php",
 			{source : query},
@@ -138,6 +139,7 @@
 
 	function getRqlResult(){
 		var sqlQuery;
+		console.log("Translating RQL to SQL");
 		$.post(
 			"request-translate-quiz.php",
 			{source : $('#source').val()},
@@ -187,6 +189,7 @@
 		}else{
 			var language = "sql";
 		}
+		console.log("Saving question");
 		$.post(
 			'save-question.php',
 			{
@@ -222,6 +225,7 @@
 			var language = "sqlAnswer";
 		}
 
+		console.log("Getting answer");
 		$.post(
 			'get-answer.php',
 			{idQuestion: idQuestion,
@@ -308,6 +312,7 @@
 
 	function load(page){
 		$('#result').html('');
+		console.log('Loading page');
 		$.post(
 			'questions/portuguese/page' + page + '.html',
 			{source : ""},
@@ -400,6 +405,7 @@
 	}
 
 	function requestJsonCompare(expected, source){
+		console.log('Comparing results');
 		$.post(
 			'request-json-compare.php',
 			{expected: JSON.stringify(expected), source: JSON.stringify(source)},
@@ -424,7 +430,7 @@
 		}
 		var idQuestion = $('#question').attr('page');
 		var idLogin = $('input[name=idLogin]').val();
-
+		console.log('Adding Error');
 		$.post(
 			'add-error.php',
 			{idQuestion: idQuestion,
