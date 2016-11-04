@@ -1,4 +1,5 @@
 <?php
+	//UTF-8
 	header('Content-Type: text/html; charset=UTF-8');
 	$rqlSource = correctQuotes($_POST['source']);
 	$rqlSource = str_replace("\n", " ", $rqlSource);
