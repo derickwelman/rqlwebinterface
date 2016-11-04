@@ -58,10 +58,10 @@
 
 		$idLogin = $_SESSION['idLogin'];
 
-		$query = $con->query("SELECT * FROM Answer WHERE idLogin = $idLogin");
+		/*$query = $con->query("SELECT * FROM Answer WHERE idLogin = $idLogin AND");
 		if($query->rowCount()>0){
 			echo '<script>alert("Limite de tentativas excedido!");window.location="index.php";</script>';
-		}
+		}*/
 
 		echo '<input type="hidden" name="idLogin" value="'.$_SESSION['idLogin'].'">';
 		?>
