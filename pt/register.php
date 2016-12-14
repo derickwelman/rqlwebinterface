@@ -16,7 +16,7 @@
 			source.val(content.substring(0, pos) + symbol + content.substring(pos, content.length));
 			source.focus();
 			source[0].setSelectionRange(pos + modifier, pos + modifier);
-		} 
+		}
 
 		$.fn.extend({
 			getCursorPosition: function() {
@@ -45,39 +45,39 @@
 		?>
 
 		<span class="clear"></span>
-		
+
 		<div id="page">
 		<form id="register" class="center" action="register-backend.php" onSubmit="return validate();" method="POST">
 			<center>
 				<h2>Cadastre-se para salvar seus resultados</h2><br>
 				<label for="name" >Nome: </label>
-				<input type="text" name="name" placeholder="Name" class="input-field" required/><hr>
+				<input type="text" name="name" placeholder="Bome" class="input-field" required/><hr>
 
 				<label for="institution" >Instituição: </label>
-				<input type="text" name="institution" placeholder="Institution" class="input-field" required/><hr>
+				<input type="text" name="institution" placeholder="Instituição" class="input-field" required/><hr>
 
 				<label for="country" >País: </label>
-				<input type="text" name="country" placeholder="Country" class="input-field" required/><hr>
+				<input type="text" name="country" placeholder="País" class="input-field" required/><hr>
 
 				<label for="login" >Nome de usuário: </label>
-				<input type="text" name="login" placeholder="User name" class="input-field" required/><hr>
+				<input type="text" name="login" placeholder="Nome de usuário" class="input-field" required/><hr>
 
 				<label for="pass" >Senha: </label>
-				<input type="password" name="pass" placeholder="Pass" class="input-field" required/><hr>
+				<input type="password" name="pass" placeholder="Senha" class="input-field" required/><hr>
 
 				<label for="confirmation" >Confirme sua senha: </label>
-				<input type="password" name="confirmation" placeholder="Confirmation" class="input-field" required/><hr>
+				<input type="password" name="confirmation" placeholder="Confirmação" class="input-field" required/><hr>
 
 				<label for="experience" >Meses aproximados de experiência com a SQL: </label><hr>
-				<input type="number" name="experience" placeholder="Experience" value="0" class="input-field" required/>
-				<input type="submit" value="Submit" class="btn-big full">
+				<input type="number" name="experience" placeholder="Experiência" value="0" class="input-field" required/>
+				<input type="submit" value="Enviar" class="btn-big full">
 				<span class="clear"></span>
 			</center>
 		</form>
 	</div>
 	<span class="clear" style="height:80px"></span>
 	<footer>
-		Relational Query Language Translator - 2016<br> Developed by Dérick Welman and Lucas Venezian
+		Relational Query Language Translator - 2016<br> Desenvolvido por Dérick Welman e Lucas Venezian
 	</footer>
 	</div>
 </div>
@@ -86,6 +86,6 @@
 
 <script>
 	function validate(){
-		
+
 	}
 </script>

@@ -8,6 +8,33 @@
 	<link rel="stylesheet" type="text/css" href="sources/bootstrap/css/bootstrap.min.css">
 	<script type="text/javascript" src="sources/jquery-1.12.1.min.js"></script>
 	<script type="text/javascript" src="sources/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		function addSymbol(symbol, modifier){
+			var source = $('#source');
+			var pos = source.getCursorPosition();
+			var content = source.val();
+			source.val(content.substring(0, pos) + symbol + content.substring(pos, content.length));
+			source.focus();
+			source[0].setSelectionRange(pos + modifier, pos + modifier);
+		}
+
+		$.fn.extend({
+			getCursorPosition: function() {
+				var el = $(this).get(0);
+				var pos = 0;
+				if('selectionStart' in el){
+					pos = el.selectionStart;
+				}else if('selection' in document){
+					el.focus();
+					var Sel = document.selection.createRange();
+					var SelLength = document.selection.createRange().text.length;
+					Sel.moveStart('character', -el.value.length);
+					pos = Sel.text.length - SelLength
+				}
+				return pos;
+			}
+		});
+	</script>
 
 </head>
 <body>
@@ -18,25 +45,25 @@
 		?>
 
 		<span class="clear"></span>
-		
+
 		<div id="page">
 		<form id="register" class="center" action="login-backend.php" onSubmit="return validate();" method="POST">
 			<center>
-				<h2>Sign-up to save your results</h2><br>
-				<label for="login">User name: </label>
-				<input type="text" name="login" placeholder="User name" class="input-field" required/><hr>
+				<h2>Entre para salvar seus resultados</h2><br>
+				<label for="login">Nome de usuário: </label>
+				<input type="text" name="login" placeholder="Nome de usuário" class="input-field" required/><hr>
 
-				<label for="pass">Password: </label>
-				<input type="password" name="pass" placeholder="Pass" class="input-field" required/><hr>
+				<label for="pass">Senha: </label>
+				<input type="password" name="pass" placeholder="Senha" class="input-field" required/><hr>
 
-				<input type="submit" value="Login" class="btn-big full">
+				<input type="submit" value="Entrar" class="btn-big full">
 				<span class="clear"></span>
 			</center>
 		</form>
 	</div>
 	<span class="clear" style="height:80px"></span>
 	<footer>
-		Relational Query Language Translator - 2016<br> Developed by Dérick Welman and Lucas Venezian
+		Relational Query Language Translator - 2016<br> Desenvolvido por Dérick Welman e Lucas Venezian
 	</footer>
 	</div>
 </div>
@@ -45,6 +72,6 @@
 
 <script>
 	function validate(){
-		
+
 	}
 </script>

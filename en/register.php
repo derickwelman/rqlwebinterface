@@ -16,7 +16,7 @@
 			source.val(content.substring(0, pos) + symbol + content.substring(pos, content.length));
 			source.focus();
 			source[0].setSelectionRange(pos + modifier, pos + modifier);
-		} 
+		}
 
 		$.fn.extend({
 			getCursorPosition: function() {
@@ -45,11 +45,11 @@
 		?>
 
 		<span class="clear"></span>
-		
+
 		<div id="page">
 		<form id="register" class="center" action="register-backend.php" onSubmit="return validate();" method="POST">
 			<center>
-				<h2>Sign-up to save your results</h2><br>
+				<h2>Sign up to save your results</h2><br>
 				<label for="name" >Name: </label>
 				<input type="text" name="name" placeholder="Name" class="input-field" required/><hr>
 
@@ -86,6 +86,6 @@
 
 <script>
 	function validate(){
-		
+
 	}
 </script>

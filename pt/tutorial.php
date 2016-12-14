@@ -16,7 +16,7 @@
 		?>
 
 		<span class="clear"></span>
-		
+
 		<a id="back-to-top" href="#">^</a>
 		<div id="page" class="content-page">
 			<h1>Apresentação e tutorial da RQL</h1><br>
@@ -353,7 +353,7 @@
 									<td>v</td>
 									<td>_v_</td>
 									<td>¬</td>
-								</tr>		
+								</tr>
 
 								<tr>
 									<td><b>SQL</b></td>
@@ -361,7 +361,7 @@
 									<td>OR</td>
 									<td>XOR</td>
 									<td>NOT</td>
-								</tr>							
+								</tr>
 							</tbody>
 						</table>
 					</li>
@@ -933,9 +933,9 @@
 							<span class="tab"/>Ordem AS ordem2 ON ordem1.posterior = ordem2.anterior WHERE ordem2.posterior != "";</li>
 						</ul>
 					</li>
-					
+
 					<hr>
-					
+
 					<li>
 						<h2 id="divisao">Divisão <span class="orange">/</span></h2>
 						<p>Esta operação possui um divisor e um dividendo que deve ser um subconjunto do divisor. Seu retorno são as tuplas do dividendo que se relacionam com todas as tuplas do divisor. Para entender melhor essa operação veja as relações <i>Venda</i> e <i>Produto</i>.</p>
@@ -954,7 +954,7 @@
 								<td>1</td>
 								<td>1</td>
 							</tr>
-							
+
 							<tr>
 								<td>1</td>
 								<td>2</td>
@@ -1036,11 +1036,11 @@
 						<p>POVOA, Lucas Venezian. <b>RELATIONAL QUERY LANGUAGE:</b> Uma Proposta de Linguagem Puramente Relacional. 2011. Curso de Análise de Sistemas e Tecnologias da Informação, Faculdade de Tecnologia de Ourinhos, Ourinhos, 2011.</p>
 						<p>RANGEL, Dérick Welman Brock. <b>TRADUÇÃO ENTRE SQL E RQL:</b> Uma linguagem de consulta puramente relacional. 2016. Curso de Análise e Desenvolvimento de Sistemas, Instituto Federal de Educação, Ciência e Tecnologia de São Paulo, Caraguatatuba, 2016.</p>
 					</div>
-					
+
 					<span class="clear" style="height:80px"></span>
-					
+
 				<footer>
-					Relational Query Language Translator - 2016<br> Developed by Dérick Welman and Lucas Venezian
+          Relational Query Language Translator - 2016<br> Desenvolvido por Dérick Welman e Lucas Venezian
 				</footer>
 			</div>
 		</div>
