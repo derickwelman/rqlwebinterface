@@ -291,7 +291,7 @@
 						<h2 id="selecao">Seleção <span class="orange">£</span></h2>
 						<p>Operação que filtra verticalmente as tuplas, limitando os resultados de acordo com algum critério.</p>
 						<p>Exemplo 1: Serão selecionados somente as tuplas da RelVar Produto em que o nome seja igual a "Mouse".</p>
-						<p>Exemplo 1: Serão selecionados somente as tuplas da RelVar Produto em que o valor seja maior que 9 e menor que 50.</p>
+						<p>Exemplo 2: Serão selecionados somente as tuplas da RelVar Produto em que o valor seja maior que 9 e menor que 50.</p>
 						<ul>
 							<li class="rql-example">£ nome = "Mouse" (Produto);<br>
 								£ valor > 9 ^ valor < 50 (Produto);</li>
@@ -373,7 +373,7 @@
 						<h2 id="renomeacao">Renomeação <span class="orange">§</span></h2>
 						<p>Renomeia um ou mais atributos de uma relação. O atributo a esquerda sempre representa o nome original, enquanto o da direita corresponde ao novo nome do atributo.</p>
 						<p>Exemplo 1: Retorna os atributos da RelVar Produto com a alteração do idProduto para "codProduto".</p>
-						<p>Exemplo 1: Retorna os atributos da RelVar Produto com a alteração do idProduto para "codProduto" e do nome para "marca".</p>
+						<p>Exemplo 2: Retorna os atributos da RelVar Produto com a alteração do idProduto para "codProduto" e do nome para "marca".</p>
 						<ul>
 							<li class="rql-example">§ idProduto codProduto (Produto);<br>
 							§ idProduto codProduto, nome marca (Produto);</li>
@@ -454,30 +454,32 @@
 						<p>A RQL tem um funcionamento um pouco diferente quanto a renomeação em relação à SQL. Quando é selecionado e renomeado algo em SQL da forma que está exemplificado acima, são executados duas operaçãos juntas: Projeção e renomeação e então são retornados somente os atributos especificados com suas devidas alterações. Já na RQL é realizada somente a renomeação, que sempre retorna todos os atributos da relação</p>
 					</li>
 
-					<p>Para as três seguintes operações, considere o esquema a seguir.</p>
+					<hr>
+
+					<p>Para as três seguintes operações, considere o esquema a seguir correspondente aum site de compra e vendas online, na qual qualquer pessoa pode ser um cliente ou um vendedor.</p>
 					<div id="example-db">
 						<table>
 							<thead>
 								<tr>
-									<td colspan="2">Tabela1</td>
+									<td colspan="2">Cliente</td>
 								</tr>
 								<tr>
-									<td>idTabela</td>
-									<td>valor</td>
+									<td>nome</td>
+									<td>idade</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>1</td>
-									<td>4</td>
+									<td>João</td>
+									<td>25</td>
 								</tr>
 								<tr>
-									<td>2</td>
-									<td>5</td>
+									<td>Maria</td>
+									<td>19</td>
 								</tr>
 								<tr>
-									<td>3</td>
-									<td>6</td>
+									<td>Renato</td>
+									<td>58</td>
 								</tr>
 							</tbody>
 						</table>
@@ -485,25 +487,25 @@
 						<table style="margin-left:40px;">
 							<thead>
 								<tr>
-									<td colspan="2">Tabela2</td>
+									<td colspan="2">Vendedor</td>
 								</tr>
 								<tr>
-									<td>idTabela</td>
-									<td>valor</td>
+									<td>nome</td>
+									<td>idade</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>1</td>
-									<td>4</td>
+									<td>João</td>
+									<td>25</td>
 								</tr>
 								<tr>
-									<td>2</td>
-									<td>6</td>
+									<td>Débora</td>
+									<td>37</td>
 								</tr>
 								<tr>
-									<td>3</td>
-									<td>7</td>
+									<td>Renato</td>
+									<td>30</td>
 								</tr>
 							</tbody>
 						</table>
@@ -515,10 +517,10 @@
 					<li>
 						<h2 id="uniao">União <span class="orange">v</span></h2>
 						<p>Une verticalmente duas relações que possuam a mesma quantidade de atributos e que sejam de tipos compatíveis.</p>
-						<p>Exemplo: Selecionar todas as tuplas das tabelas 1 e 2.</p>
+						<p>Exemplo: Selecionar todas as pessoas cadastradas.</p>
 						<ul>
-							<li class="rql-example">Tabela1 v Tabela2;</li>
-							<li class="sql-example">SELECT DISTINCT * FROM Tabela1 UNION SELECT DISTINCT * FROM Tabela2;</li>
+							<li class="rql-example">Cliente v Vendedor;</li>
+							<li class="sql-example">SELECT DISTINCT * FROM Cliente UNION SELECT DISTINCT * FROM Vendedor;</li>
 						</ul>
 						<table>
 							<thead>
@@ -526,44 +528,46 @@
 									<td colspan="2">Resultado</td>
 								</tr>
 								<tr>
-									<td>idTabela</td>
-									<td>valor</td>
+									<td>nome</td>
+									<td>idade</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>1</td>
-									<td>4</td>
+									<td>João</td>
+									<td>25</td>
 								</tr>
 								<tr>
-									<td>2</td>
-									<td>5</td>
+									<td>Maria</td>
+									<td>19</td>
 								</tr>
 								<tr>
-									<td>3</td>
-									<td>6</td>
+									<td>Renato</td>
+									<td>58</td>
 								</tr>
-									<td>2</td>
-									<td>6</td>
+									<td>Débora</td>
+									<td>37</td>
 								</tr>
 								<tr>
-									<td>3</td>
-									<td>7</td>
+									<td>Renato</td>
+									<td>30</td>
 								</tr>
 							</tbody>
 						</table>
 					</li>
+
+					<p style="margin-top:20px;">Observe que o nome renato se repete duas vezes. Isto se dá pois a união somente desconsidera tuplas totalmente iguais e nesse caso os <i>Renatos</i> tem idades diferentes</p>
 
 					<hr>
 
 					<!---------------------------------- Intersecção ---------------------------------->
 					<li>
 						<h2 id="interseccao">Intersecção <span class="orange">^</span></h2>
-						<p>Semelhante à união, porém retorna todas as tuplas que sejam iguais entre duas relações.</p>
-						<p>Exemplo: Selecionar somente as tuplas que sejam iguais entre as duas tabelas.</p>
+						<p>Semelhante à união. Retorna todas as tuplas que sejam exatamente iguais entre duas relações.</p>
+						<p>Exemplo: Selecionar somente as as pessoas que são tanto vendedores quanto clientes.</p>
 						<ul>
-							<li class="rql-example">Tabela1 ^ Tabela2;</li>
-							<li class="sql-example">SELECT DISTINCT * FROM Tabela1 INTERSECTION SELECT DISTINCT * FROM Tabela2;</li>
+							<li class="rql-example">Vendedor ^ Cliente;</li>
+							<li class="sql-example">SELECT DISTINCT * FROM Vendedor INTERSECT SELECT DISTINCT * FROM Cliente;</li>
 						</ul>
 						<table>
 							<thead>
@@ -571,14 +575,14 @@
 									<td colspan="2">Resultado</td>
 								</tr>
 								<tr>
-									<td>idTabela</td>
-									<td>valor</td>
+									<td>nome</td>
+									<td>idade</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>1</td>
-									<td>4</td>
+									<td>João</td>
+									<td>25</td>
 								</tr>
 							</tbody>
 						</table>
@@ -590,11 +594,11 @@
 					<!---------------------------------- Diferença ---------------------------------->
 					<li>
 						<h2 id="diferenca">Diferença <span class="orange">-</span></h2>
-						<p>Assim com a União e Intersecção, precisa de duas relações compatíveis e retorna todos os elementos da relação à esquerda que não estejam presentes na relação da direita.</p>
-						<p>Exemplo: Retornar todas as tuplas que existam na Tabela1 e que não existam na Tabela2.</p>
+						<p>Assim com a União e Intersecção, precisa de duas relações compatíveis. Retorna todos os elementos da relação à esquerda que não estejam presentes na relação da direita.</p>
+						<p>Exemplo: Retornar todos os clientes que não sejam vendedores.</p>
 						<ul>
-							<li class="rql-example">Tabela1 - Tabela2;</li>
-							<li class="sql-example">SELECT DISTINCT * FROM Tabela1 DIFFERENCE SELECT DISTINCT * FROM Tabela2;</li>
+							<li class="rql-example">Cliente - Vendedor;</li>
+							<li class="sql-example">SELECT DISTINCT * FROM Cliente EXCEPT SELECT DISTINCT * FROM Vendedor;</li>
 						</ul>
 						<table>
 							<thead>
@@ -602,18 +606,18 @@
 									<td colspan="2">Resultado</td>
 								</tr>
 								<tr>
-									<td>idTabela</td>
-									<td>valor</td>
+									<td>nome</td>
+									<td>idade</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>2</td>
-									<td>5</td>
+									<td>Maria</td>
+									<td>19</td>
 								</tr>
 								<tr>
-									<td>3</td>
-									<td>6</td>
+									<td>Renato</td>
+									<td>58</td>
 								</tr>
 							</tbody>
 						</table>
@@ -629,7 +633,7 @@
 						<p>A junção natural tenta identificar atributos com o mesmo nome entre as relações utilizadas, caso encontre mais de uma correspondência, então a operação é ambígua e um erro é lançado</p>
 						<p>Já a junção comum requer a especificação de que atributos estão sendo utilizados para a junção, 1 de cada tabela.</p>
 						<p>Exemplo 1: Operação de junção natural que retorna as Vendas, assim como os itens de venda relacionados à ela.</p>
-						<p>Exemplo 1: Operação de junção com critério que retorna as Vendas que possuem seu ID igual ao de um Produto.</p>
+						<p>Exemplo 2: Operação de junção com critério que retorna as Vendas que possuem seu ID igual ao de um Produto.</p>
 						<ul>
 							<li class="rql-example">Venda [] ItemVenda;<br>
 							Venda [idVenda = idProduto] Produto;</li>
@@ -846,7 +850,7 @@
 
 					<span class="clear" style="height:50px"></span>
 					<h1>Operações implementadas</h1>
-					<p>As seguintes operaçãos não são originalmente implementadas em SQL.</p>
+					<p>As seguintes operações não são originalmente implementadas em SQL.</p>
 
 					<hr>
 
