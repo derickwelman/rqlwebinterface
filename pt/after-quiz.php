@@ -56,7 +56,7 @@
 
 				<div class="after-quiz-question" id="question1">
 					<label for="question1">Gostaria de desenvolver softwares utilizando da RQL.</label>
-					<div class="radio-group">
+					<div class="radio-group">					
 						<input type="radio" name="question1" id="question1-1" class="rate rate-1" value="1" <?php if($question[1]==1) echo "checked" ?>>
 						<input type="radio" name="question1" id="question1-2" class="rate rate-2" value="2" <?php if($question[1]==2) echo "checked" ?>>
 						<input type="radio" name="question1" id="question1-3" class="rate rate-3" value="3" <?php if($question[1]==3) echo "checked" ?>>
@@ -159,7 +159,7 @@
 				<hr>
 
 				<div class="after-quiz-question" id="question1">
-					<label for="question9">Acho a SQL mais simples de utilizar do que a SQL.</label>
+					<label for="question9">Acho a RQL mais simples de utilizar do que a SQL.</label>
 					<div class="radio-group">
 						<input type="radio" name="question9" id="question1-1" class="rate rate-1" value="1" <?php if($question[9]==1) echo "checked" ?>>
 						<input type="radio" name="question9" id="question1-2" class="rate rate-2" value="2" <?php if($question[9]==2) echo "checked" ?>>

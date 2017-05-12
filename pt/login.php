@@ -22,12 +22,12 @@
 		<div id="page">
 		<form id="register" class="center" action="login-backend.php" onSubmit="return validate();" method="POST">
 			<center>
-				<h2>Sign-up to save your results</h2><br>
-				<label for="login">User name: </label>
-				<input type="text" name="login" placeholder="User name" class="input-field" required/><hr>
+				<h2>Entre para salvar seus resultados</h2><br>
+				<label for="login">E-mail: </label>
+				<input type="text" name="login" placeholder="E-mail" class="input-field" required/><hr>
 
-				<label for="pass">Password: </label>
-				<input type="password" name="pass" placeholder="Pass" class="input-field" required/><hr>
+				<label for="pass">Senha: </label>
+				<input type="password" name="pass" placeholder="Senha" class="input-field" required/><hr>
 
 				<input type="submit" value="Login" class="btn-big full">
 				<span class="clear"></span>

@@ -13,12 +13,12 @@
 		exit();
 	}
 
-	$login = $_POST['login'];
-	$pass = $_POST['pass'];
+	$login = hash('sha256', $_POST['login']);
+	$pass = hash('sha256', $_POST['pass']);
 
 	$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
-	$query = $con->query("SELECT * FROM Login WHERE login = '$login' AND pass = '$pass'");
+	$query = $con->query("SELECT * FROM Login WHERE email = '$login' AND pass = '$pass'");
 	if($query->rowCount()!=1){
 		echo '<script>alert("Credenciais incorretas!");window.location="login.php"</script>';
 		exit();

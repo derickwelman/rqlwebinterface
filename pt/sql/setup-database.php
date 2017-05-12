@@ -205,17 +205,21 @@ $con->query("INSERT INTO Hierarchy (idInferior, idSuperior) VALUES
 
 /*----------------------- QUESTIONNAIRE -----------------------*/
 
-$con->query("CREATE TABLE IF NOT EXISTS Login(
+$query1 = $con->query("CREATE TABLE IF NOT EXISTS Login(
 	idLogin		SERIAL 			NOT NULL PRIMARY KEY,
 	name 		VARCHAR(50) 	NOT NULL,
+	birth 		DATE 			NOT NULL,
 	institution VARCHAR(100) 	NOT NULL,
-	login 		VARCHAR(50) 	NOT NULL,
-	pass 		VARCHAR(50) 	NOT NULL,
-	country 	VARCHAR(50) 	NOT NULL,
+	formation 	INT 			NOT NULL,
+	area 		VARCHAR(50)		NOT NULL,
+	situation	INT 			NOT NULL,
+	country 	VARCHAR(30) 	NOT NULL,
+	email 		CHAR(64) 		NOT NULL,
+	pass 		CHAR(64)		NOT NULL,
 	experience 	INT 			NOT NULL
 );" );
 
-$con->query("CREATE TABLE IF NOT EXISTS Answer(
+$query2 = $con->query("CREATE TABLE IF NOT EXISTS Answer(
 	idQuestion 	INT 			NOT NULL,
 	idLogin		INT 			NOT NULL REFERENCES Login (idLogin),
 	rqlAnswer 	VARCHAR(1000)	NULL,
@@ -226,7 +230,7 @@ $con->query("CREATE TABLE IF NOT EXISTS Answer(
 	sqlErrors	INT 			NOT NULL
 );" );
 
-$con->query("CREATE TABLE IF NOT EXISTS ComparationQuestion(
+$query3 = $con->query("CREATE TABLE IF NOT EXISTS ComparationQuestion(
 	idLogin 		INT 			NOT NULL REFERENCES Login (idLogin),
 	questionNumber	INT 			NOT NULL,
 	answer 			INT 			NOT NULL
