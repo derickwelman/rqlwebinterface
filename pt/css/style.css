@@ -263,13 +263,15 @@ body{
 #register label{
 	font-family: calibri;
 	font-size: 18px;
-	min-width: 160px;
+	min-width: 170px;
+	text-align: right;
 }
 
 #register .input-field{
-	width:60% !important;
+	width:58% !important;
 	padding:5px;
 	margin-bottom: 5px;
+	border: 1px solid gray;
 }
 
 #register hr{
@@ -569,4 +571,12 @@ footer{
 
 .impression-list li{
 	padding: 3px 0;
+}
+
+.input-error{
+	border-color:!important rgb(180, 80, 80);
+	border-style: solid;
+	border-radius:5px;
+	background:rgb(255, 190, 190);
+	border-width: 1px;
 }
