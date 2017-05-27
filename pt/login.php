@@ -29,7 +29,7 @@
 				<label for="pass">Senha: </label>
 				<input type="password" name="pass" placeholder="Senha" class="input-field" required/><hr>
 
-				<input type="submit" value="Login" class="btn-big full">
+				<input type="submit" value="Entrar" class="btn-big full">
 				<span class="clear"></span>
 			</center>
 		</form>

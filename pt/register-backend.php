@@ -30,7 +30,7 @@
 	$cripEmail = hash('sha256', $email);
 	$cripPass = hash('sha256', $pass);
 
-	echo 'name ' . $name . '<br>';
+	/*echo 'name ' . $name . '<br>';
 	echo 'birth ' . $birth . '<br>';
 	echo 'institution ' . $institution . '<br>';
 	echo 'formation ' . $formation . '<br>';
@@ -40,7 +40,7 @@
 	echo 'email ' . $email . ' ' . hash('sha256', $email) . '<br>';
 	echo 'pass ' . $pass . ' ' . hash('sha256', $pass) . '<br>';
 	echo 'confirmation ' . $confirmation . '<br>';
-	echo 'experience ' . $experience . '<br>';
+	echo 'experience ' . $experience . '<br>';*/
 
 	$con->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 

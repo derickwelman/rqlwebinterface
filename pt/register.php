@@ -101,7 +101,7 @@
 				</select>
 
 				<span class="clear" style="height:20px"></span>
-				<input type="submit" value="Submit" class="btn-big full">
+				<input type="submit" value="Registrar" class="btn-big full">
 				<span class="clear"></span>
 			</center>
 		</form>
