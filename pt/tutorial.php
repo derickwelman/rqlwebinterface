@@ -43,10 +43,10 @@
 			<h1 id="termos">Termos utilizados</h1>
 			<p>Para um melhor entendimento do documento a seguir, é importante introduzir alguns termos utilizados no modelo e banco de dados relacional. Um banco de dados relacional é formado por <i><b>relações</b></i> (também chamadas de <i><b>RelVar</i></b> ou <i><b>variável de relação</i></b>) que são conjuntos de <i><b>atributos</b></i> e que por sua vez pertencem a um <i><b>domínio</i></b> (restrição do tipo de dados comportados pelo atributo, como por exemplo, valores numéricos, texto, entre outros).</p>
 			<p>RelVars são conhecidas informalmente como tabelas do banco de dados, uma vez que apresentam a estrutura de linhas e colunas. Cada "coluna" de uma RelVar representa um atributo e cada "linha" é chamada de <i><b>tupla</i></b>, i.e., uma instância dessa relação.</p>
-			<p>RelVars podem possuir relacionamentos entre si por meio de atributos que identifiquem relações externas, chamados de chaves estrangeiras. Esse relacionamento possui <i><b>cardinalidade</b></i>, que corresponde à quantidade de elementos que podem ser relacionado entre as RelVars. As cardinalidades podem ser representadas da seguinte maneira:</p>
+			<p>RelVars podem possuir relacionamentos entre si por meio de atributos que identifiquem relações externas, chamados de chaves estrangeiras. Esse relacionamento possui <i><b>cardinalidade</b></i>, que corresponde à quantidade de elementos que podem ser relacionados entre as RelVars. As cardinalidades podem ser representadas da seguinte maneira:</p>
 			<ul style="margin-left:20px;">
-				<li>(1 : n) ou (n : 1) : A RelVar que se localiza ao lado do 1 pode se relacionar com várias RelVars que se localizam no lado oposto, porém a RelVar que se localiza do lado do n pode se relacionar com somente uma RelVar oposta (1 para muitos).</li>
-				<li>(1 : 1) ou (1 : 1) : A RelVar pode se relacionar com somente 1 RelVar que se localiza no lado oposto (1 para 1).</li>
+				<li>(1 : n) ou (n : 1) : Uma tupla da RelVar que se localiza ao lado do <i>1</i> pode se relacionar com várias tuplas da RelVar que se localiza no lado oposto, porém as tuplas da RelVar que se localiza do lado do <i>n</i> podem se relacionar com somente uma tupla da RelVar oposta (1 para muitos).</li>
+				<li>(1 : 1) ou (1 : 1) : Uma tupla da RelVar pode se relacionar com somente 1 tupla da RelVar oposta (1 para 1).</li>
 				<li>Para um melhor entendimento veja o exemplo que será mostrado abaixo.</li>
 			</ul>
 			<p> A seguir serão apresentadas as funções abordadas inicialmente pela nova linguagem de modo comparativo com a SQL, assim como exemplos de seu uso baseados no banco abaixo.</p>
@@ -167,7 +167,7 @@
 				</table>
 			</div>
 			<span class="clear"></span>
-			<p style="margin-top:20px;">Nesse caso uma Venda pode se relacionar com vários ItemVenda, mas um ItemVenda pode pertencer a somente uma Venda. O mesmo acontece com o produto com relação ao ItemVenda.</p>
+			<p style="margin-top:20px;">Nesse caso uma tupla da Venda pode se relacionar com várias tuplas da ItemVenda, mas uma tupla da ItemVenda pode pertencer a somente uma Venda. O mesmo acontece entre o Produto e ItemVenda.</p>
 			<h1 id="operacoes">Operações</h1>
 
 			<ul id="compare-operations">
@@ -177,7 +177,7 @@
 				<!---------------------------------- RELAÇÃO ---------------------------------->
 				<li>
 					<h2 id="relacao">Relação</h2>
-					<p>Na RQL quando uma consulta é formada somente pelo nome de uma RelVar, ela retorna todos os atributos e tuplas da mesma.</p>
+					<p>Na RQL quando uma consulta é formada somente pelo nome de uma RelVar, ela recebe o nome de Operação de Relação e retorna todos os atributos e tuplas da mesma.</p>
 					<p>Exemplo: Serão selecionados todos os dados da RelVar Venda.</p>
 					<ul>
 						<li class="rql-example">Venda;</li>
@@ -216,7 +216,7 @@
 				<!---------------------------------- PROJEÇÃO ---------------------------------->
 				<li>
 					<h2 id="projecao">Projeção <span class="orange">¢</span></h2>
-					<p>Operação que filtra horizontalmente o resultado de uma consulta, i.e., limita os atributos que serão selectionados na operação.</p>
+					<p>Operação que filtra horizontalmente o resultado de uma consulta, i.e., limita os atributos que serão selecionados na operação.</p>
 					<p>Exemplo 1: Será selecionado somente o atributo idProduto da RelVar Produto.</p>
 					<p>Exemplo 2: Serão selecionados os atributos idProduto e nome da RelVar Produto.</p>
 					<ul>
@@ -451,12 +451,12 @@
 						</table>
 						<span class="clear"></span>
 						<br>
-						<p>A RQL tem um funcionamento um pouco diferente quanto a renomeação em relação à SQL. Quando é selecionado e renomeado algo em SQL da forma que está exemplificado acima, são executados duas operaçãos juntas: Projeção e renomeação e então são retornados somente os atributos especificados com suas devidas alterações. Já na RQL é realizada somente a renomeação, que sempre retorna todos os atributos da relação</p>
+						<p>A RQL tem um funcionamento um pouco diferente da SQL quanto a renomeação. Quando é selecionado e renomeado algo em SQL da forma que está exemplificado acima, são executados duas operações juntas: Projeção e renomeação e então são retornados somente os atributos especificados com suas devidas alterações. Já na RQL é realizada somente a renomeação, que sempre retorna todos os atributos da RelVar.</p>
 					</li>
 
 					<hr>
 
-					<p>Para as três seguintes operações, considere o esquema a seguir correspondente aum site de compra e vendas online, na qual qualquer pessoa pode ser um cliente ou um vendedor.</p>
+					<p>Para as três seguintes operações, considere o esquema a seguir correspondente a um site de compra e vendas online, na qual qualquer pessoa pode ser um cliente ou um vendedor.</p>
 					<div id="example-db">
 						<table>
 							<thead>
@@ -516,7 +516,7 @@
 					<!---------------------------------- União ---------------------------------->
 					<li>
 						<h2 id="uniao">União <span class="orange">v</span></h2>
-						<p>Une verticalmente duas relações que possuam a mesma quantidade de atributos e que sejam de tipos compatíveis.</p>
+						<p>Une verticalmente duas RelVars que possuam a mesma quantidade de atributos e que sejam de tipos compatíveis.</p>
 						<p>Exemplo: Selecionar todas as pessoas cadastradas.</p>
 						<ul>
 							<li class="rql-example">Cliente v Vendedor;</li>
@@ -556,7 +556,7 @@
 						</table>
 					</li>
 
-					<p style="margin-top:20px;">Observe que o nome renato se repete duas vezes. Isto se dá pois a união somente desconsidera tuplas totalmente iguais e nesse caso os <i>Renatos</i> tem idades diferentes</p>
+					<p style="margin-top:20px;">Observe que o nome renato se repete duas vezes. Isto se dá pois a união somente desconsidera tuplas totalmente iguais e nesse caso os <i>"Renatos"</i> tem idades diferentes</p>
 
 					<hr>
 
@@ -564,7 +564,7 @@
 					<li>
 						<h2 id="interseccao">Intersecção <span class="orange">^</span></h2>
 						<p>Semelhante à união. Retorna todas as tuplas que sejam exatamente iguais entre duas relações.</p>
-						<p>Exemplo: Selecionar somente as as pessoas que são tanto vendedores quanto clientes.</p>
+						<p>Exemplo: Selecionar somente as pessoas que são tanto vendedores quanto clientes.</p>
 						<ul>
 							<li class="rql-example">Vendedor ^ Cliente;</li>
 							<li class="sql-example">SELECT DISTINCT * FROM Vendedor INTERSECT SELECT DISTINCT * FROM Cliente;</li>
@@ -594,7 +594,7 @@
 					<!---------------------------------- Diferença ---------------------------------->
 					<li>
 						<h2 id="diferenca">Diferença <span class="orange">-</span></h2>
-						<p>Assim com a União e Intersecção, precisa de duas relações compatíveis. Retorna todos os elementos da relação à esquerda que não estejam presentes na relação da direita.</p>
+						<p>Assim como a União e Intersecção, precisa de duas relações compatíveis. Retorna todos os elementos da RelVar à esquerda que não estejam presentes na RelVar da direita.</p>
 						<p>Exemplo: Retornar todos os clientes que não sejam vendedores.</p>
 						<ul>
 							<li class="rql-example">Cliente - Vendedor;</li>
@@ -629,11 +629,11 @@
 					<!---------------------------------- JUNÇÃO ---------------------------------->
 					<li>
 						<h2 id="juncao">Junção <span class="orange">[]</span></h2>
-						<p>Une horizontalmente duas relações de acordo com um atributo que tenham em comum. Pode ser realizadode duas formas: Junção ou Junção natural.</p>
-						<p>A junção natural tenta identificar atributos com o mesmo nome entre as relações utilizadas, caso encontre mais de uma correspondência, então a operação é ambígua e um erro é lançado</p>
-						<p>Já a junção comum requer a especificação de que atributos estão sendo utilizados para a junção, 1 de cada tabela.</p>
-						<p>Exemplo 1: Operação de junção natural que retorna as Vendas, assim como os itens de venda relacionados à ela.</p>
-						<p>Exemplo 2: Operação de junção com critério que retorna as Vendas que possuem seu ID igual ao de um Produto.</p>
+						<p>Une horizontalmente duas relações de acordo com um atributo que tenham em comum. Pode ser realizado de duas formas: Junção (por critério) ou Junção natural.</p>
+						<p>A junção natural tenta identificar atributos com o mesmo nome entre as relações utilizadas, caso encontre mais de uma correspondência, então a operação é ambígua e um erro é lançado.</p>
+						<p>Já a junção por critério requer a especificação de que atributos estão sendo utilizados para a junção, 1 de cada tabela.</p>
+						<p>Exemplo 1: Operação de junção natural que retorna as Vendas, assim como os itens de Venda relacionados à ela.</p>
+						<p>Exemplo 2: Operação de junção por critério que retorna as Vendas que possuem seu ID igual ao de um Produto.</p>
 						<ul>
 							<li class="rql-example">Venda [] ItemVenda;<br>
 							Venda [idVenda = idProduto] Produto;</li>
@@ -857,10 +857,10 @@
 					<li>
 						<h2 id="fecho">Fecho transitivo <span class="orange">&lt;&lt;&gt;&gt;</span></h2>
 						<p>
-						De acordo com a regra da trasitividade:<br>
-						A->B<br>
-						B->C<br>
-						logo:<br>A->C<br>
+						A princípio, analise a regra da transitividade que está exemplificada a seguir:<br>
+						A->B (se "A" então "B")<br>
+						B->C (se "B" então "C")<br>
+						logo: A->C (se "A" então "C")<br>
 						Esta operação encontra as transitividades contidas dentro de uma relação, que deve ser binária e com seus dois atributos de mesmo tipo. O exemplo a seguir demonstra a proriedade de transitividade assim como o resultado da operação.
 						</p>
 
@@ -1036,6 +1036,29 @@
 					<hr>
 
 					</ul>
+					
+					<h1 id="aninhamento">Aninhamento de operações</h1>
+					<p>Na RQL o aninhamento de operações é feita por meio de parênteses seguindo as seguintes regras:</p>
+					<ul style="margin-left:20px;">
+						<li>Operações de Relação sem aninhamento são escritas sem o uso de parênteses</li>
+						<li class="rql-example">Exemplo: Relação;</li>
+
+						<li>Operações unitárias sempre devem ter sua operação base entre parênteses</li>
+						<li class="rql-example">
+							Exemplo 1: ¢ idRelacao (Relacao);<br>
+							Exemplo 2: ¢ idRelacao (£ atributo = "Valor" (Relacao));
+						</li>
+
+						<li>Operações binárias possuem dois operadores. Não são necessários os parênteses somente nos operadores que representem uma operação de Relação. Casos contrário o uso do parênteses é necessário</li>
+						<li class="rql-example">
+							Exemplo 1: Relacao1 v Relacao2;<br>
+							Exemplo 2: (¢ idRelacao (Relacao1)) v Relacao2;<br>
+							Exemplo 3: (¢ idRelacao (Relacao1)) v (¢ idRelacao (Relacao2));<br>
+						</li>
+					</ul>
+
+					<hr>
+
 						<h1>Referências</h1>
 						<p>POVOA, Lucas Venezian. <b>RELATIONAL QUERY LANGUAGE:</b> Uma Proposta de Linguagem Puramente Relacional. 2011. Curso de Análise de Sistemas e Tecnologias da Informação, Faculdade de Tecnologia de Ourinhos, Ourinhos, 2011.</p>
 						<p>RANGEL, Dérick Welman Brock. <b>TRADUÇÃO ENTRE SQL E RQL:</b> Uma linguagem de consulta puramente relacional. 2016. Curso de Análise e Desenvolvimento de Sistemas, Instituto Federal de Educação, Ciência e Tecnologia de São Paulo, Caraguatatuba, 2016.</p>

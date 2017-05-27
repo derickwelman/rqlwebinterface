@@ -43,7 +43,7 @@
 			<form action="submit-form.php" method="POST" id="after-quiz">
 				<h1>Feedback sobre a linguagem</h1>
 				<span class="clear" style="height:20px;"></span>
-				<p>Para as questões a seguir, informe em uma escala de satisfação o quanto você concorda com a afirmação. Considere as expressões abaixo com os seguintes significados:</p>
+				<p>Para as questões a seguir, informe em uma escala de satisfação o quanto você concorda com cada afirmação. Considere as expressões abaixo com os seguintes significados:</p>
 				<ul class="impression-list">
 					<li><img src="images/rate-1.svg"/>: Discordo plenamente</li>
 					<li><img src="images/rate-2.svg"/>: Discordo em parte</li>

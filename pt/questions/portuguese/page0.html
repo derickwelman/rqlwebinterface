@@ -1,17 +1,17 @@
 <div class="center col-md-10" style="padding-top:20px">
 <h1>Introdução</h1>
 <h2>Sobre o questionário</h2>
-	<p>A fim de avaliar a equivalência e diferenças entre as linguagens <i>Relational Query Language</i> e <i>Structured Query Language</i>, este questionário aborda ambas com as mesmas questões. Abaixo seguem algumas de suas características:</p>
+	<p>A fim de avaliar a equivalência e diferenças entre as linguagens <i>Relational Query Language</i> e <i>Structured Query Language</i>, este questionário aborda ambas com as mesmas questões. Abaixo seguem algumas características do questionário:</p>
 	<ul>
-		<li>Só será permitida uma tentativa.</li>
+		<li>Não será permitido retornar para questões anteriores.</li>
 		<li>As respostas deste questionário serão armazenadas assim como a contagem de erros e o tempo gasto por questão.</li>
 		<li>Caso a questão precise ser respondida em <span class="rql-back">RQL</span>, o campo de texto destinado a resposta ficará com o fundo <span class="rql-back">laranja</span>. Caso contrário, a questão deverá ser respondida em <span class="sql-back">SQL</span> e o campo terá seu fundo pintado de <span class="sql-back">azul.</span></li>
-		<li>A sequência de questões será feita da seguinte forma: Toda questão será respondida consecutivamente nas duas linguagens, porém, caso uma questão comece com <span class="rql-back">RQL</span>, então a próxima começará com <span class="sql-back">SQL</span>.</li>
+		<li>A sequência de questões será feita da seguinte forma: Toda questão será respondida consecutivamente nas duas linguagens, porém, caso uma questão comece com <span class="rql-back">RQL</span>, então a próxima começará com <span class="sql-back">SQL e vice-versa</span>.</li>
 		<li>As questões serão baseadas num esquema de banco de dados que será abordado logo abaixo.</li>
 	</ul>
 <h2>Banco de dados e contextualização</h2>
 	<p>
-		As características a seguir descrevem uma sociedade fictícia de abelhas e sua base de dados (na esquerda):
+		A fim de realizar algumas consultas durante o teste, foi criado um banco de dados base para o questionário. As características a seguir descrevem esse banco que trata-se de uma sociedade fictícia de abelhas:
 	</p>
 	<ul style="list-style-type:square; list-style-position:inside">
 		<li>Cada abelha possui uma função</li>
@@ -20,10 +20,11 @@
 		<li>O salário de cada abelha está associado a sua função</li>
 		<li>Dentro da sociedade, a função determina a posição na hierarquia de cada abelha, na qual a posição mais alta é da rainha</li>
 		<li>Cada abelha vive em um favo de mel que pode abrigar várias abelhas</li>
+		<li>Cada favo de mel fica dentro de uma colmeia, que por sua vez pode conter vários favos</li>
 		<li>Colmeias e flores são localizadas por suas posições x e y</li>
 	</ul>
 	<p>
 		Seu trabalho como analista a serviço das abelhas é fornecer informações sobre as colmeias e seu gerenciamento.
 	</p>
-	<span class="warning" style="padding:2px">Clique na lupa localizada na esquerda da página para abrir o diagrama do banco de dados (A lupa aparecerá quando sobrepor o mouse acima do retângulo vermelho)</span>
+	<span class="warning" style="padding:2px">Clique na lupa localizada na esquerda da página para abrir o diagrama do banco de dados (A lupa aparecerá quando sobrepor o mouse sobre o retângulo vermelho).</span>
 </div>

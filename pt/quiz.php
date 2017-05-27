@@ -124,7 +124,7 @@
 
 	//GET QUERY RESULTS
 	function getData(query){
-		console.log('Executing query');
+		//console.log('Executing query');
 		$.post(
 			"connect.php",
 			{source : query},
@@ -143,13 +143,13 @@
 		/*rqlQuery = rqlQuery.replace(/¢/g, "\\p");
 		rqlQuery = rqlQuery.replace(/§/g, "\\r");
 		rqlQuery = rqlQuery.replace(/£/g, "\\s");*/
-		console.log("Translating RQL to SQL: " + rqlQuery);
+		//console.log("Translating RQL to SQL: " + rqlQuery);
 		$.post(
 			"request-translate-quiz.php",
 			{source : rqlQuery},
 			function(data){
 				sqlQuery = data;
-				console.log(sqlQuery);
+				//console.log(sqlQuery);
 				if(data.indexOf("SELECT DISTINCT") !== -1){
 					getData(sqlQuery);
 				}
@@ -236,7 +236,7 @@
 				idLogin: idLogin,
 				language: language},
 				function(data){
-					console.log(data);
+					//console.log(data);
 					document.getElementById('source').innerHTML = data;
 					source.val(data);
 					console.log("Question " + idQuestion + " returned!");
